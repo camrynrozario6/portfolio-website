@@ -1,0 +1,847 @@
+<!doctype html>
+<!-- Home hero card — copied from the Framer embed.
+     Landscape frame: wide scene. Portrait frame: stacked phone layout.
+     Motion: the scene assembles itself once when it scrolls into view. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya&family=Noto+Sans+Gurmukhi&text=%E0%AC%98%E0%A9%AD&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar&family=Noto+Sans+Batak&text=%EA%A9%9C%E1%AF%85&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* ---- Edit colors here ---- */
+    --card: #FFF0A6;
+    --card-ink: #6B3A08;
+    --card-text-from: #8A4B0A;
+    --card-text-to: #D98A1C;
+    --sticky: #BFDDF4;
+    --sticky-ink: #1F3563;
+    --sticky-fold: #DDEDFA;
+    --sticky-fold-shade: #9EC2E2;
+    --sticky-text-from: #1F3563;
+    --sticky-text-to: #4F72C2;
+    --clip-dark: #8E98A6;
+    --clip-light: #E9EDF2;
+    --green: #CFDC9A;
+    --green-ink: #3F4527;
+    --tape: rgba(246, 238, 212, .82);
+    --pink: #F2BCCB;
+    --pink-ink: #6E2140;
+  }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  .viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 760px;
+    height: 521px;
+    transform-origin: 0 0;
+  }
+
+  .piece {
+    position: absolute;
+    --x: 0px;
+    --y: 0px;
+    --s: 1;
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(var(--s));
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform .28s cubic-bezier(.3, 1.4, .5, 1), filter .2s ease;
+  }
+  .piece:hover, .piece:focus-visible { --s: 1.06; }
+  .piece.dragging { cursor: grabbing; transition: filter .2s ease; filter: drop-shadow(0 18px 18px rgba(35, 48, 94, .18)); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .piece { transition: none; }
+  }
+  .piece:focus-visible { outline: 2px dashed var(--card-ink); outline-offset: 8px; }
+
+  /* ---------- Card + paper clip ---------- */
+  .card-wrap {
+    left: 62px;
+    top: 52px;
+    width: 470px;
+    height: 314px;
+    --r: -4deg;
+  }
+
+  .card {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    background: var(--card);
+    box-shadow:
+      0 1px 0 rgba(107, 58, 8, .08),
+      0 16px 26px -14px rgba(107, 58, 8, .4);
+    padding: 40px 36px 24px 28px;
+    box-sizing: border-box;
+  }
+
+  .card p {
+    margin: 0;
+    font-family: "Caladea", Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    background: radial-gradient(circle at var(--gx) var(--gy), var(--card-text-to) 0%, var(--card-text-from) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .clip {
+    position: absolute;
+    left: 62px;
+    top: -50px;
+    width: 42px;
+    height: 122px;
+    transform: rotate(7deg);
+    pointer-events: none;
+    overflow: visible;
+  }
+  .clip path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .clip .wire { stroke: var(--clip-dark); stroke-width: 4; }
+  .clip .shine { stroke: var(--clip-light); stroke-width: 1.4; transform: translate(-.6px, -.6px); }
+
+  /* ---------- Sticky note ---------- */
+  .sticky-wrap {
+    left: 468px;
+    top: 230px;
+    width: min(226px, 30vw);
+    aspect-ratio: 282 / 272;
+    height: auto;
+    --r: 5deg;
+    --fold: 30px;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .07)) drop-shadow(0 5px 6px rgba(0, 0, 0, .16));
+  }
+
+  .sticky {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--sticky);
+    padding: 22px 22px 26px 20px;
+    box-sizing: border-box;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--fold)), calc(100% - var(--fold)) 100%, 0 100%);
+  }
+  .sticky::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: var(--fold);
+    height: var(--fold);
+    background: linear-gradient(135deg, var(--sticky-fold) 0%, var(--sticky-fold) 22%, var(--sticky-fold-shade) 50%);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  .sticky p {
+    margin: 0;
+    font-family: "Caladea", Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1.12;
+    text-wrap: pretty;
+    letter-spacing: -0.005em;
+    background: radial-gradient(circle at var(--gx) var(--gy), var(--sticky-text-to) 0%, var(--sticky-text-from) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card p::before {
+    content: "";
+    float: right;
+    width: 60px;
+    height: 302px;
+    shape-outside: polygon(100% 0, 100% 128px, 62% 128px, 19% 302px, 100% 302px);
+  }
+
+  .card em, .sticky em { font-style: italic; }
+
+  .card .status {
+    margin: 12px 0 0;
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--card-ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .status::before {
+    content: "";
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #7DB043;
+    box-shadow: 0 0 0 3px rgba(110, 154, 58, .22), 0 0 6px 2px rgba(125, 176, 67, .45);
+    animation: glow 2.8s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(110, 154, 58, .22), 0 0 4px 1px rgba(125, 176, 67, .35); }
+    50%      { box-shadow: 0 0 0 4px rgba(110, 154, 58, .16), 0 0 12px 5px rgba(125, 176, 67, .6); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card .status::before { animation: none; }
+  }
+
+  /* ---------- Cursor-following text gradient ---------- */
+  @property --gx { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+  @property --gy { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+  .card p, .sticky p {
+    --gx: 100%;
+    --gy: 100%;
+    transition: --gx .5s ease-out, --gy .5s ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card p, .sticky p { transition: none; }
+  }
+  .kaomoji {
+    white-space: nowrap;
+    font-family: "Caladea", "Noto Sans Oriya", "Noto Sans Gurmukhi", sans-serif;
+  }
+
+  /* ---------- Small stickers ---------- */
+  .sticker {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .06), 0 6px 10px -6px rgba(0, 0, 0, .25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .green-sticker {
+    left: 565px;
+    top: 105px;
+    width: 128px;
+    height: 88px;
+    --r: 8deg;
+    background: var(--green);
+  }
+  .green-sticker::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 78px;
+    height: 24px;
+    margin-left: -39px;
+    background: var(--tape);
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .12));
+    clip-path: polygon(
+      0 8%, 4% 0, 96% 0, 100% 12%, 97% 30%, 100% 50%, 97% 70%, 100% 88%,
+      96% 100%, 4% 100%, 0 90%, 3% 70%, 0 50%, 3% 30%
+    );
+  }
+
+  .green-sticker svg {
+    width: 108px;
+    height: 80px;
+    margin-top: 10px;
+    transform: rotate(-6deg);
+  }
+
+  .pink-note {
+    left: 6px;
+    top: 378px;
+    width: 124px;
+    height: 124px;
+    --r: -7deg;
+    background: var(--pink);
+  }
+  .pink-note svg {
+    width: 104px;
+    height: 104px;
+    transform: rotate(4deg);
+  }
+
+  /* ---------- Hover pop-ups ---------- */
+  .tip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 16px);
+    z-index: 5;
+    width: max-content;
+    max-width: 210px;
+    padding: 10px 14px 11px;
+    box-sizing: border-box;
+    background: #FFFDF6;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .06), 0 10px 18px -8px rgba(0, 0, 0, .3);
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.3;
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    transform-origin: 50% 100%;
+    transform: translateX(-50%) rotate(calc(var(--r) * -1)) translateY(6px) scale(.92);
+    transition: opacity .18s ease, transform .28s cubic-bezier(.3, 1.4, .5, 1);
+  }
+  .tip::after {
+    content: "";
+    position: absolute;
+    left: var(--tail-x, 50%);
+    bottom: -5px;
+    width: 11px;
+    height: 11px;
+    margin-left: -5.5px;
+    background: inherit;
+    transform: rotate(45deg);
+    border-radius: 0 0 2px 0;
+  }
+  .tip em { font-style: italic; }
+  .piece:hover .tip, .piece:focus-visible .tip, .piece.tip-open .tip {
+    opacity: 1;
+    transform: translateX(-50%) rotate(calc(var(--r) * -1)) translateY(0) scale(1);
+  }
+  .piece.dragging .tip { opacity: 0; }
+
+  .green-sticker .tip { color: var(--green-ink); }
+  .pink-note .tip { color: var(--pink-ink); }
+  .tip .kaomoji { font-family: "Geist", "Noto Sans Myanmar", "Noto Sans Batak", sans-serif; }
+
+  .pink-note .tip {
+    left: 16px;
+    max-width: none;
+    white-space: nowrap;
+    --tail-x: 46px;
+    transform-origin: 46px 100%;
+    transform: rotate(calc(var(--r) * -1)) translateY(6px) scale(.92);
+  }
+  .pink-note:hover .tip, .pink-note:focus-visible .tip, .pink-note.tip-open .tip {
+    transform: rotate(calc(var(--r) * -1)) translateY(0) scale(1);
+  }
+
+  .green-sticker .tip {
+    left: auto;
+    right: -4px;
+    bottom: calc(100% + 10px);
+    max-width: 260px;
+    --tail-x: calc(100% - 68px);
+    transform-origin: calc(100% - 68px) 100%;
+    transform: rotate(calc(var(--r) * -1)) translateY(6px) scale(.92);
+  }
+  .green-sticker:hover .tip,
+  .green-sticker:focus-visible .tip,
+  .green-sticker.tip-open .tip {
+    transform: rotate(calc(var(--r) * -1)) translateY(0) scale(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tip { transition: opacity .18s ease; }
+  }
+
+  /* ---------- Phone layout (portrait frame) ---------- */
+  .stage.is-phone { width: 390px; height: 708px; }
+  .is-phone .card-wrap   { left: 22px; top: 80px;  width: 346px; height: 312px; --r: -3deg; }
+  .is-phone .card        { padding: 46px 30px 30px 24px; }
+  .is-phone .card p      { font-size: 27px; }
+  .is-phone .card .status { font-size: 11px; letter-spacing: 0; }
+  .is-phone .card .keep { white-space: normal; }
+  .is-phone .card p::before { display: none; }
+  .is-phone .green-sticker { left: 250px; top: 22px; --r: 10deg; }
+  .is-phone .sticky-wrap {
+    left: 24px;
+    top: 428px;
+    width: min(226px, calc(100% - 108px));
+    aspect-ratio: 282 / 272;
+    height: auto;
+    --r: 4deg;
+  }
+  .is-phone .sticky p {
+    font-size: 21px;
+  }
+  .is-phone .pink-note {
+    left: 272px;
+    top: 596px;
+    width: 94px;
+    height: 94px;
+    --r: 8deg;
+  }
+  .is-phone .pink-note svg { width: 80px; height: 80px; }
+  .is-phone .green-sticker .tip {
+    bottom: auto;
+    top: calc(100% + 16px);
+    transform-origin: calc(100% - 68px) 0;
+    transform: rotate(calc(var(--r) * -1)) translateY(-6px) scale(.92);
+  }
+  .is-phone .green-sticker .tip::after { bottom: auto; top: -5px; border-radius: 2px 0 0 0; }
+  .is-phone .green-sticker:hover .tip,
+  .is-phone .green-sticker:focus-visible .tip,
+  .is-phone .green-sticker.tip-open .tip {
+    transform: rotate(calc(var(--r) * -1)) translateY(0) scale(1);
+  }
+  .is-phone .pink-note .tip {
+    left: auto;
+    right: -4px;
+    --tail-x: calc(100% - 50px);
+    transform-origin: 100% 100%;
+  }
+
+  /* ---------- Touch screens ---------- */
+  @media (hover: none) {
+    .piece { touch-action: pan-y; cursor: default; }
+    .piece:hover { --s: 1; }
+    .piece.pressed { --s: 1.06; }
+  }
+
+  /* ---------- Motion support ---------- */
+  .card p, .sticky p {
+    -webkit-mask-image: linear-gradient(115deg, #000 45%, transparent 55%);
+    mask-image: linear-gradient(115deg, #000 45%, transparent 55%);
+    -webkit-mask-size: 320% 100%;
+    mask-size: 320% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 0% 0%;
+    mask-position: 0% 0%;
+  }
+  .sticky::after { transform-origin: 100% 100%; }
+</style>
+
+<div class="viewport" id="viewport">
+  <div class="stage" id="stage">
+
+    <!-- Card with paper clip -->
+    <div class="piece card-wrap" tabindex="0" aria-label="About card">
+      <svg class="clip" viewBox="-2 4 40 116" aria-hidden="true">
+        <path class="wire"  d="M26 30 V88 a8 8 0 0 1 -16 0 V18 a12 12 0 0 1 24 0 V95 a16 16 0 0 1 -32 0 V30"/>
+        <path class="shine" d="M26 30 V88 a8 8 0 0 1 -16 0 V18 a12 12 0 0 1 24 0 V95 a16 16 0 0 1 -32 0 V30"/>
+      </svg>
+
+      <div class="card">
+        <!-- ---- Edit card text here ---- -->
+        <p>Camryn Rozario is a <em>multidisciplinary designer</em> who loves solving problems, creating <em>intuitive user flows</em>, and <span class="keep">crafting thoughtful visual</span> <span style="white-space: nowrap">experiences <span class="kaomoji">ଘ(੭ˊᵕˋ)੭</span></span></p>
+        <!-- ---- Edit the availability line here ---- -->
+        <div class="status">Open to full-time and part-time work</div>
+      </div>
+
+      <svg class="clip" viewBox="-2 4 40 116" aria-hidden="true">
+        <path class="wire"  d="M26 30 V88 a8 8 0 0 1 -16 0 V18"/>
+        <path class="shine" d="M26 30 V88 a8 8 0 0 1 -16 0 V18"/>
+      </svg>
+    </div>
+
+    <!-- Green sticker with a line-art open book -->
+    <div class="piece sticker green-sticker" tabindex="0" aria-label="Green sticker with an open book doodle" aria-describedby="tip-book">
+      <!-- ---- Edit the green pop-up here ---- -->
+      <span class="tip" id="tip-book" role="tooltip">I’m currently reading <em>When Breath Becomes Air</em> as of September 2026</span>
+      <svg viewBox="-34 -24 68 50" fill="none" stroke="var(--green-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <defs>
+          <filter id="book-doodle" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="1" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <g filter="url(#book-doodle)">
+          <g transform="translate(0 1) scale(0.85)">
+            <path d="M0 -8 C-6 -12 -14 -12 -20 -9 V13 C-14 10 -6 10 0 14"/>
+            <path d="M0 -8 C6 -12 14 -12 20 -9 V13 C14 10 6 10 0 14"/>
+            <path d="M0 -8 V14"/>
+            <path d="M-20 13 V15.8 C-14 12.8 -6 12.8 0 16.8 C6 12.8 14 12.8 20 15.8 V13"/>
+            <g stroke-width="1.1">
+              <path d="M-16.5 -4.5 C-12.5 -6.3 -7.5 -6.3 -3.5 -4.2"/>
+              <path d="M-16.5 0 C-12.5 -1.8 -7.5 -1.8 -3.5 0.3"/>
+              <path d="M-16.5 4.5 C-13.5 3.2 -10.5 3 -8 3.4"/>
+              <path d="M3.5 -4.2 C7.5 -6.3 12.5 -6.3 16.5 -4.5"/>
+              <path d="M3.5 0.3 C7.5 -1.8 12.5 -1.8 16.5 0"/>
+              <path d="M3.5 4.8 C7.5 2.7 12.5 2.7 16.5 4.5"/>
+            </g>
+            <path d="M7 12.3 V20.5 L8.7 19 L10.4 20.5 V11.9"/>
+          </g>
+          <g stroke-width="1.2">
+            <path d="M-25 -15.6 Q-24.2 -11.8 -20.4 -11 Q-24.2 -10.2 -25 -6.4 Q-25.8 -10.2 -29.6 -11 Q-25.8 -11.8 -25 -15.6 Z" transform="rotate(-8 -25 -11)"/>
+            <path d="M23 -18.3 Q23.8 -15.8 26.3 -15 Q23.8 -14.2 23 -11.7 Q22.2 -14.2 19.7 -15 Q22.2 -15.8 23 -18.3 Z" transform="rotate(10 23 -15)"/>
+            <path d="M26 6.4 Q26.8 8.2 28.6 9 Q26.8 9.8 26 11.6 Q25.2 9.8 23.4 9 Q25.2 8.2 26 6.4 Z" transform="rotate(-5 26 9)"/>
+            <path d="M-21 13 v4 M-23 15 h4"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Blue sticky note -->
+    <div class="piece sticky-wrap" tabindex="0" aria-label="Sticky note">
+      <div class="sticky">
+        <!-- ---- Edit sticky note text here ---- -->
+        <p>When I’m not designing, you can find me either <span style="white-space: nowrap"><em>reading</em>, <em>knitting</em></span> or <span style="white-space: nowrap">eating <em>something</em></span> <em>sweet</em>!</p>
+      </div>
+    </div>
+
+    <!-- Pink post-it with a line-art milkshake -->
+    <div class="piece sticker pink-note" tabindex="0" aria-label="Pink post-it with a milkshake doodle" aria-describedby="tip-shake">
+      <!-- ---- Edit the pink pop-up here ---- -->
+      <span class="tip" id="tip-shake" role="tooltip">I love milkshakes <span class="kaomoji">( ꩜ ᯅ ꩜;)</span></span>
+      <svg viewBox="-34 -34 68 68" fill="none" stroke="var(--pink-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <defs>
+          <filter id="shake-doodle" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="1" seed="3" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <g filter="url(#shake-doodle)">
+          <path d="M7 -13 L11.5 -27 L14 -26.3 L9.6 -12.4"/>
+          <path d="M-12 -6 C-15.5 -9 -12.5 -13.5 -8.5 -12.2 C-8.5 -16.5 -3 -17.5 -1 -14.2 C1 -18 7.5 -17.2 7.2 -13 C11 -14 14.5 -10 12 -6"/>
+          <circle cx="0" cy="-19.6" r="3.1"/>
+          <path d="M0.4 -22.7 C0 -26.5 -3 -28.5 -6 -29"/>
+          <path d="M-13 -6 H13"/>
+          <path d="M-12 -6 L-7 18 Q0 20.2 7 18 L12 -6"/>
+          <path d="M-10.3 2 Q-5 4 0 2 Q5 0 10.3 2"/>
+          <path d="M0 19.6 V24.2"/>
+          <path d="M-8 26.2 C-4 23.6 4 23.6 8 26.2"/>
+          <g stroke-width="1.2">
+            <path d="M-24 -21.6 Q-23.2 -17.8 -19.4 -17 Q-23.2 -16.2 -24 -12.4 Q-24.8 -16.2 -28.6 -17 Q-24.8 -17.8 -24 -21.6 Z" transform="rotate(-8 -24 -17)"/>
+            <path d="M24 -9.3 Q24.8 -6.8 27.3 -6 Q24.8 -5.2 24 -2.7 Q23.2 -5.2 20.7 -6 Q23.2 -6.8 24 -9.3 Z" transform="rotate(10 24 -6)"/>
+            <path d="M-22 12 v4 M-24 14 h4"/>
+            <path d="M22 17 v3.4 M20.3 18.7 h3.4"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var viewport = document.getElementById("viewport");
+    var stage = document.getElementById("stage");
+    var W = 760, H = 521, scale = 1, mode = "";
+    var pieces = document.querySelectorAll(".piece");
+
+    function fit() {
+      var w = viewport.clientWidth, h = viewport.clientHeight;
+      var next = (w / h < 0.9) ? "phone" : "wide";
+      if (next !== mode) {
+        mode = next;
+        stage.classList.toggle("is-phone", mode === "phone");
+        W = mode === "phone" ? 390 : 760;
+        H = mode === "phone" ? 708 : 521;
+        pieces.forEach(function (el) {
+          el._bx = 0; el._by = 0;
+          el.style.setProperty("--x", "0px");
+          el.style.setProperty("--y", "0px");
+        });
+      }
+      scale = Math.min(w / W, h / H);
+      stage.style.transform =
+        "translate(" + (-W * scale / 2) + "px," + (-H * scale / 2) + "px) scale(" + scale + ")";
+    }
+    fit();
+    window.addEventListener("resize", fit);
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport);
+
+    var glowText = document.querySelectorAll(".card p, .sticky p");
+    var lastEvent = null, ticking = false;
+    function clamp(v) { return Math.max(-40, Math.min(140, v)); }
+    window.addEventListener("pointermove", function (e) {
+      lastEvent = e;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        glowText.forEach(function (t) {
+          var b = t.getBoundingClientRect();
+          t.style.setProperty("--gx", clamp((lastEvent.clientX - b.left) / b.width * 100) + "%");
+          t.style.setProperty("--gy", clamp((lastEvent.clientY - b.top) / b.height * 100) + "%");
+        });
+      });
+    });
+
+    document.addEventListener("pointerdown", function (e) {
+      pieces.forEach(function (p) { if (!p.contains(e.target)) p.classList.remove("tip-open"); });
+    });
+
+    pieces.forEach(function (el) {
+      var startX, startY;
+      el._bx = 0; el._by = 0;
+
+      el.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch") {
+          el.classList.add("pressed");
+          if (el.querySelector(".tip")) {
+            var open = !el.classList.contains("tip-open");
+            pieces.forEach(function (p) { p.classList.remove("tip-open"); });
+            el.classList.toggle("tip-open", open);
+          }
+          return;
+        }
+        el.setPointerCapture(e.pointerId);
+        el.classList.add("dragging");
+        startX = e.clientX;
+        startY = e.clientY;
+      });
+
+      el.addEventListener("pointermove", function (e) {
+        if (!el.classList.contains("dragging")) return;
+        el.style.setProperty("--x", el._bx + (e.clientX - startX) / scale + "px");
+        el.style.setProperty("--y", el._by + (e.clientY - startY) / scale + "px");
+      });
+
+      function end() {
+        setTimeout(function () { el.classList.remove("pressed"); }, 180);
+        if (!el.classList.contains("dragging")) return;
+        el.classList.remove("dragging");
+        el._bx = parseFloat(el.style.getPropertyValue("--x")) || 0;
+        el._by = parseFloat(el.style.getPropertyValue("--y")) || 0;
+      }
+      el.addEventListener("pointerup", end);
+      el.addEventListener("pointercancel", end);
+      el.addEventListener("pointerleave", function (e) { if (e.pointerType === "touch") end(); });
+
+      el.addEventListener("keydown", function (e) {
+        var step = e.shiftKey ? 20 : 6;
+        var map = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+        if (!map[e.key]) return;
+        e.preventDefault();
+        el._bx += map[e.key][0];
+        el._by += map[e.key][1];
+        el.style.setProperty("--x", el._bx + "px");
+        el.style.setProperty("--y", el._by + "px");
+      });
+    });
+  })();
+</script>
+
+<script>
+  /* ---------- Motion: the scene assembles itself ---------- */
+  window.CardMotion = function (stage, opts) {
+    opts = opts || {};
+    var loop = !!opts.loop, speed = 1, t = 0, playing = false, last = 0, raf = 0;
+    var anims = [];
+    var SETTLE = 8900;
+    var T = 10300;
+    var q = function (s) { return stage.querySelector(s); };
+
+    function A(el, kf, delay, dur, o) {
+      if (!el || !el.animate) return;
+      o = o || {};
+      var timing = { delay: delay, duration: dur, easing: o.easing || "linear", fill: o.fill || "both" };
+      if (o.pseudo) timing.pseudoElement = o.pseudo;
+      try {
+        var a = el.animate(kf, timing);
+        a.pause();
+        a.currentTime = 0;
+        anims.push(a);
+      } catch (e) { /* older browser: skip this move */ }
+    }
+
+    function draw(svg, start, step, dur) {
+      if (!svg) return;
+      var i = 0;
+      Array.prototype.forEach.call(svg.querySelectorAll("path, circle"), function (p) {
+        if (p.closest("defs")) return;
+        p.setAttribute("pathLength", "1");
+        p.style.strokeDasharray = "1 1.1";
+        A(p, [{ strokeDashoffset: 1.06 }, { strokeDashoffset: 0 }], start + i * step, dur,
+          { easing: "cubic-bezier(.5,0,.3,1)" });
+        i++;
+      });
+    }
+
+    var card = q(".card-wrap"), cardText = q(".card p"), status = q(".card .status");
+    var green = q(".green-sticker"), sticky = q(".sticky-wrap"), stickyInner = q(".sticky");
+    var stickyText = q(".sticky p"), pink = q(".pink-note");
+    var SPRING = "cubic-bezier(.3,1.5,.5,1)";
+    var SETTLE_EASE = "cubic-bezier(.2,.75,.3,1)";
+
+    A(card, [
+      { translate: "40px -150px", rotate: "-16deg", scale: "0.92", opacity: 0 },
+      { offset: .4, opacity: 1 },
+      { offset: .6, translate: "0px 10px", rotate: "2.5deg", scale: "1.01" },
+      { offset: .8, translate: "0px -4px", rotate: "-1deg", scale: "1" },
+      { translate: "0px 0px", rotate: "0deg", scale: "1", opacity: 1 }
+    ], 200, 1000, { easing: SETTLE_EASE });
+
+    Array.prototype.forEach.call(stage.querySelectorAll(".clip"), function (clip) {
+      A(clip, [
+        { translate: "0px -48px", opacity: 0 },
+        { offset: .3, opacity: 1 },
+        { translate: "0px 0px", opacity: 1 }
+      ], 1050, 520, { easing: SPRING });
+    });
+
+    A(cardText, [
+      { maskPosition: "100% 0%", webkitMaskPosition: "100% 0%", translate: "0px 6px" },
+      { maskPosition: "0% 0%", webkitMaskPosition: "0% 0%", translate: "0px 0px" }
+    ], 1250, 1300, { easing: "cubic-bezier(.45,.05,.3,1)" });
+
+    A(status, [
+      { opacity: 0, translate: "-10px 0px" },
+      { opacity: 1, translate: "0px 0px" }
+    ], 2350, 450, { easing: SETTLE_EASE });
+    A(status, [{ scale: "0" }, { offset: .6, scale: "1.6" }, { scale: "1" }], 2450, 500,
+      { pseudo: "::before", easing: "ease-out" });
+
+    A(green, [
+      { translate: "30px -30px", rotate: "22deg", scale: "1.6", opacity: 0 },
+      { offset: .5, translate: "0px 0px", rotate: "-3deg", scale: "0.94", opacity: 1 },
+      { offset: .75, rotate: "1deg", scale: "1.03" },
+      { translate: "0px 0px", rotate: "0deg", scale: "1", opacity: 1 }
+    ], 1700, 700, { easing: "cubic-bezier(.25,.6,.35,1)" });
+    A(green, [
+      { scale: "0 1", opacity: 0, transformOrigin: "0% 50%" },
+      { offset: .2, opacity: 1 },
+      { scale: "1 1", opacity: 1, transformOrigin: "0% 50%" }
+    ], 2250, 380, { pseudo: "::before", easing: "cubic-bezier(.3,.9,.4,1)" });
+    draw(green.querySelector("svg"), 2350, 55, 380);
+
+    A(sticky, [
+      { translate: "120px 90px", rotate: "18deg", opacity: 0 },
+      { offset: .6, translate: "-6px -4px", rotate: "-2deg", opacity: 1 },
+      { offset: .82, translate: "2px 1px", rotate: ".6deg" },
+      { translate: "0px 0px", rotate: "0deg", opacity: 1 }
+    ], 2300, 900, { easing: "cubic-bezier(.22,.8,.3,1)" });
+    A(stickyInner, [{ scale: "0" }, { offset: .7, scale: "1.18" }, { scale: "1" }], 3050, 450,
+      { pseudo: "::after", easing: "ease-out" });
+    A(stickyText, [
+      { maskPosition: "100% 0%", webkitMaskPosition: "100% 0%", translate: "0px 5px" },
+      { maskPosition: "0% 0%", webkitMaskPosition: "0% 0%", translate: "0px 0px" }
+    ], 2950, 1100, { easing: "cubic-bezier(.45,.05,.3,1)" });
+
+    A(pink, [
+      { translate: "-60px 80px", rotate: "-25deg", scale: "0.6", opacity: 0 },
+      { offset: .55, translate: "0px -8px", rotate: "4deg", scale: "1.05", opacity: 1 },
+      { offset: .8, translate: "0px 2px", rotate: "-1deg", scale: "0.99" },
+      { translate: "0px 0px", rotate: "0deg", scale: "1", opacity: 1 }
+    ], 3300, 750, { easing: SETTLE_EASE });
+    draw(pink.querySelector("svg"), 3700, 55, 380);
+
+    [[cardText, 4300], [stickyText, 4550]].forEach(function (p) {
+      A(p[0], [
+        { "--gx": "100%", "--gy": "100%" },
+        { offset: .5, "--gx": "-40%", "--gy": "-30%" },
+        { "--gx": "100%", "--gy": "100%" }
+      ], p[1], 1800, { easing: "ease-in-out", fill: "none" });
+    });
+
+    [["#tip-book", 5200], ["#tip-shake", 6900]].forEach(function (p) {
+      A(q(p[0]), [
+        { opacity: 0, scale: "1" },
+        { offset: .12, opacity: 1, scale: "1.087" },
+        { offset: .88, opacity: 1, scale: "1.087" },
+        { opacity: 0, scale: "1" }
+      ], p[1], 2000, { easing: "ease-in-out", fill: "none" });
+    });
+
+    [[pink, "-10deg"], [sticky, "8deg"], [green, "10deg"], [card, "-5deg"]].forEach(function (p, i) {
+      A(p[0], [
+        { translate: "0px 0px", rotate: "0deg", opacity: 1 },
+        { translate: "0px -34px", rotate: p[1], opacity: 0 }
+      ], 9000 + i * 90, 550, { easing: "cubic-bezier(.5,0,.75,0)", fill: "forwards" });
+    });
+
+    function tick() { if (opts.onTick) opts.onTick(t); }
+    function state() { if (opts.onState) opts.onState(playing); }
+
+    function seek(ms) {
+      t = Math.max(0, Math.min(T, ms));
+      for (var i = 0; i < anims.length; i++) anims[i].currentTime = t;
+      tick();
+    }
+    function frame(now) {
+      var dt = Math.min(now - last, 100);
+      last = now;
+      var nt = t + dt * speed;
+      var end = loop ? T : SETTLE;
+      if (nt >= end) {
+        if (loop) nt -= T;
+        else { seek(end); pause(); if (opts.onEnd) opts.onEnd(); return; }
+      }
+      seek(nt);
+      raf = requestAnimationFrame(frame);
+    }
+    function play() {
+      if (playing) return;
+      if (!loop && t >= SETTLE) seek(0);
+      playing = true;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+      state();
+    }
+    function pause() {
+      playing = false;
+      cancelAnimationFrame(raf);
+      state();
+    }
+    function finish() {
+      pause();
+      anims.forEach(function (a) { a.cancel(); });
+      anims = [];
+    }
+
+    return {
+      T: T, SETTLE: SETTLE,
+      seek: seek, play: play, pause: pause, finish: finish,
+      isPlaying: function () { return playing; },
+      time: function () { return t; },
+      setLoop: function (v) { loop = !!v; },
+      setSpeed: function (v) { speed = v; }
+    };
+  };
+
+  (function () {
+    var stage = document.getElementById("stage");
+    if (!Element.prototype.animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var m = CardMotion(stage, { loop: false, onEnd: function () { m.finish(); } });
+    var played = false, observing = false;
+    m.seek(0);
+
+    function trigger() {
+      if (played) return;
+      played = true;
+      clearTimeout(safety);
+      m.seek(0);
+      setTimeout(m.play, 150);
+    }
+
+    var safety = setTimeout(function () { if (!played) m.seek(m.SETTLE); }, 2500);
+
+    function observe() {
+      if (observing) return;
+      observing = true;
+      if (!("IntersectionObserver" in window)) { trigger(); return; }
+      var steps = [];
+      for (var i = 0; i <= 20; i++) steps.push(i / 20);
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var h = e.boundingClientRect.height;
+          if (h === 0 || e.intersectionRect.height >= Math.min(h * 0.35, 280)) {
+            io.disconnect();
+            trigger();
+          }
+        });
+      }, { threshold: steps });
+      io.observe(document.getElementById("viewport"));
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(observe);
+    setTimeout(observe, 1200);
+  })();
+</script>
