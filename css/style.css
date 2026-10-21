@@ -495,3 +495,9 @@ main.case .meta-grid { margin-top: 40px; }
 
 /* Nav: Home, About, Resume in Caladea */
 .nav-top a:not(.logo), .nav-top span { font-family: var(--serif); font-size: 1.375rem; letter-spacing: 0; line-height: 1.25; }
+
+/* Nook: key solution headings match the section statements (serif, same size) */
+main.case .sol > h2.subheader {
+  font-family: var(--serif); font-weight: 400;
+  font-size: var(--t-h2); line-height: var(--lh-tight);
+}
