@@ -429,10 +429,11 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 .quotes blockquote { margin: 0; padding: var(--s3); border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: var(--s1); }
 .quotes blockquote p { font-size: var(--t-lead); }
 .quotes cite { font-style: normal; font-weight: 500; color: var(--secondary-brown); }
-.quotes { grid-template-columns: repeat(3, 1fr); }
+.quotes { grid-template-columns: 1fr; max-width: 920px; }
+.quotes blockquote { border-left: 3px solid var(--red); }
+.quotes blockquote p { color: var(--secondary-brown); }
 .q-note { font-size: 13px; color: var(--secondary-brown); margin-top: 4px; }
 .quotes .q-context { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-brown); }
-@media (max-width: 860px) { .quotes { grid-template-columns: 1fr; } }
 
 @media (max-width: 860px) {
   .meta-grid, .stats, .card-grid, .two-up, .survey { grid-template-columns: 1fr; }
@@ -620,10 +621,10 @@ main.case .sol > h2.subheader {
   .gallery-page .intro { gap: var(--s2); margin-bottom: var(--s5); }
 }
 
-/* TLDR: summary card with the four findings in a 2x2 grid */
-main.case .research-block.tldr { display: flex; flex-direction: column; gap: 20px; padding: 36px 40px 40px; border-radius: var(--radius); background: rgba(61, 52, 45, 0.05); }
-main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 2rem; line-height: 1; }
-.tldr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
-.tldr-list li { font-size: 1rem; line-height: 1.55; padding-top: 16px; border-top: 1px solid var(--line); }
-.tldr-list strong { display: block; font-weight: 600; font-size: 1.125rem; margin-bottom: 4px; }
-@media (max-width: 860px) { main.case .research-block.tldr { padding: 24px; } .tldr-list { grid-template-columns: 1fr; gap: 20px; } }
+/* TLDR: large red heading on the left, points beside it (original layout) */
+main.case .research-block.tldr { display: grid; grid-template-columns: auto 1fr; gap: 0 32px; align-items: start; }
+main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 4rem; line-height: .9; }
+.tldr-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; max-width: 760px; padding-top: 6px; }
+.tldr-list li { font-size: 1.0625rem; line-height: 1.55; }
+.tldr-list strong { font-weight: 600; }
+@media (max-width: 860px) { main.case .research-block.tldr { grid-template-columns: 1fr; gap: 16px; } main.case .research-block.tldr > h3 { font-size: 3rem; } }
