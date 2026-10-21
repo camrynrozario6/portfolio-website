@@ -23,12 +23,25 @@
     <aside class="site-nav" data-nav="nook"></aside>
 
     <main class="case page">
-      <!-- Header video (assets/nook-walkthrough.mp4). To use the interactive phone demo from Framer instead, swap this for an iframe with src="embeds/nook-features.html"
-           and give it class="feature-frame". -->
+      <!-- Header video with custom player (assets/nook-walkthrough.mp4). Swap the src to change the video. -->
       <div class="case-hero" style="background-image: url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png')">
-        <video class="short-frame" src="assets/nook-walkthrough.mp4" poster="assets/nook-walkthrough-poster.jpg"
-          autoplay muted loop playsinline preload="auto" aria-label="Nook app walkthrough"
-          style="display:block; object-fit:cover; border:0;"></video>
+        <div class="np" data-player>
+          <video class="short-frame" src="assets/nook-walkthrough.mp4" poster="assets/nook-walkthrough-poster.jpg"
+            autoplay muted playsinline preload="auto" aria-label="Nook app walkthrough"></video>
+          <button class="np-big" type="button" aria-label="Play" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z"/><path class="i-replay" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+          </button>
+          <div class="np-bar">
+            <button class="np-btn np-toggle" type="button" aria-label="Pause">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5.5v13l11-6.5z"/></svg>
+            </button>
+            <input class="np-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Seek video">
+            <span class="np-time" aria-live="off">0:00</span>
+            <button class="np-btn np-replay" type="button" aria-label="Replay from start">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- ===================== OVERVIEW ===================== -->
@@ -237,6 +250,50 @@
         if (f.contentWindow === e.source) f.style.height = e.data.embedHeight + "px";
       });
     });
+  </script>
+  <script>/* Nook header video player: play/pause, scrub, replay, autoplay on load */
+  (function () {
+    var root = document.querySelector("[data-player]");
+    if (!root) return;
+    var v = root.querySelector("video"), toggle = root.querySelector(".np-toggle"),
+        big = root.querySelector(".np-big"), seek = root.querySelector(".np-seek"),
+        time = root.querySelector(".np-time"), replay = root.querySelector(".np-replay"), scrubbing = false, wasPlaying = false;
+    function fmt(t) { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); }
+    function sync() {
+      var paused = v.paused, ended = v.ended;
+      root.classList.toggle("is-paused", paused);
+      root.classList.toggle("is-ended", ended);
+      toggle.setAttribute("aria-label", paused ? "Play" : "Pause");
+      big.hidden = !paused;
+      big.setAttribute("aria-label", ended ? "Replay" : "Play");
+    }
+    function progress() {
+      if (!v.duration) return;
+      if (!scrubbing) seek.value = Math.round(v.currentTime / v.duration * 1000);
+      seek.style.setProperty("--p", (seek.value / 10) + "%");
+      time.textContent = fmt(v.currentTime) + " / " + fmt(v.duration);
+    }
+    function play() { var p = v.play(); if (p && p.catch) p.catch(sync); }
+    function togglePlay() { if (v.ended) { v.currentTime = 0; play(); } else if (v.paused) play(); else v.pause(); }
+    toggle.addEventListener("click", togglePlay);
+    big.addEventListener("click", togglePlay);
+    v.addEventListener("click", togglePlay);
+    replay.addEventListener("click", function () { v.currentTime = 0; play(); });
+    seek.addEventListener("pointerdown", function () { scrubbing = true; wasPlaying = !v.paused; v.pause(); });
+    seek.addEventListener("input", function () {
+      if (v.duration) v.currentTime = seek.value / 1000 * v.duration;
+      seek.style.setProperty("--p", (seek.value / 10) + "%");
+      time.textContent = fmt(seek.value / 1000 * v.duration) + " / " + fmt(v.duration);
+    });
+    seek.addEventListener("change", function () { scrubbing = false; if (wasPlaying) play(); wasPlaying = false; });
+    ["play", "pause", "ended"].forEach(function (e) { v.addEventListener(e, sync); });
+    ["timeupdate", "loadedmetadata", "seeked"].forEach(function (e) { v.addEventListener(e, progress); });
+    /* start as soon as the page loads; browsers allow this because it's muted */
+    v.muted = true;
+    if (v.readyState >= 1) progress();
+    play();
+    sync();
+  })();
   </script>
 </body>
 </html>
