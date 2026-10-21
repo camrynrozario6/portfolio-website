@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>/* page-load animation: hide content until it flows in (skipped if reduced motion) */
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("js-reveal");
+      setTimeout(function () { document.documentElement.classList.add("rv-ready"); }, 3000);
+    }
+  </script>
 </head>
 <body>
   <div class="shell">

@@ -112,3 +112,58 @@
   document.querySelectorAll(".site-nav a").forEach(function (a) { a.addEventListener("click", function () { setOpen(false); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
 })();
+
+/* ============================================================
+   Page-load animation: each block fades in and flows up, one after another.
+   Blocks further down the page flow up when you scroll to them.
+   ============================================================ */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("js-reveal")) return;
+
+  // Containers whose children animate one by one
+  var CONTAINERS = "main, main section, .projects, .mg-grid, .cv, .cv-col, .intro, .about-top, .about-intro";
+  var containers = Array.prototype.slice.call(document.querySelectorAll(CONTAINERS));
+  var items = [];
+  containers.forEach(function (c) {
+    Array.prototype.forEach.call(c.children, function (el) {
+      if (el.matches(CONTAINERS) || el.matches("script, style")) return;
+      items.push(el);
+    });
+  });
+  // keep page order
+  items.sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
+  items.forEach(function (el) { el.classList.add("rv"); });
+  root.classList.add("rv-ready");
+
+  var STEP = 90, MAX = 720;
+  var firstScreen = innerHeight;
+  var loadIndex = 0;
+
+  function show(el, delay) {
+    el.style.setProperty("--rv-delay", delay + "ms");
+    el.classList.add("in");
+    // clear the delay afterwards so hover effects stay snappy
+    setTimeout(function () { el.style.removeProperty("--rv-delay"); }, delay + 900);
+  }
+
+  // On load: everything on the first screen, staggered top to bottom
+  requestAnimationFrame(function () {
+    items.forEach(function (el) {
+      if (el.getBoundingClientRect().top < firstScreen) show(el, Math.min(loadIndex++ * STEP, MAX));
+    });
+
+    // The rest: flow up as they scroll into view
+    if (!("IntersectionObserver" in window)) { items.forEach(function (el) { show(el, 0); }); return; }
+    var batch = 0, batchTimer = null;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        show(e.target, Math.min(batch++ * STEP, MAX));
+        clearTimeout(batchTimer); batchTimer = setTimeout(function () { batch = 0; }, 120);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    items.forEach(function (el) { if (!el.classList.contains("in")) io.observe(el); });
+  });
+})();

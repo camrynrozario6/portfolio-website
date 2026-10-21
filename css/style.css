@@ -501,3 +501,13 @@ main.case .sol > h2.subheader {
   font-family: var(--serif); font-weight: 400;
   font-size: var(--t-h2); line-height: var(--lh-tight);
 }
+
+/* ---------- Page-load animation: content flows up ---------- */
+.js-reveal:not(.rv-ready) main { opacity: 0; }
+.js-reveal .rv {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--rv-delay, 0ms);
+}
+.js-reveal .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js-reveal .rv { opacity: 1; transform: none; transition: none; } }
