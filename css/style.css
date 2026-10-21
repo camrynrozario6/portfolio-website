@@ -377,3 +377,6 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
   }
   main.case > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
 }
+
+/* Nook: text runs the full width of the centred column */
+main.case p, main.case .body, main.case .callout-q, main.case .problem-q { max-width: none; }
