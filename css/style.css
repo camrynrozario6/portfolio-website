@@ -622,11 +622,9 @@ main.case .sol > h2.subheader {
 
 /* TLDR: heading on the left, points on the right */
 main.case .research-block.tldr { display: grid; grid-template-columns: 200px 1fr; gap: var(--s4); align-items: start; }
-main.case .tldr > h3 { color: var(--red); margin: 0; }
+main.case .research-block.tldr > h3 { color: var(--red); margin: 0; align-self: center; justify-self: center; text-align: center; font-size: 3.25rem; line-height: 1; }
 .tldr-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
 .tldr-list li { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1.0625rem; line-height: 1.55; }
 .tldr-list li:first-child { padding-top: 4px; }
 .tldr-list strong { font-weight: 600; }
-@media (max-width: 860px) { main.case .research-block.tldr { grid-template-columns: 1fr; gap: var(--s2); } }
-/* Red rule on interview quotes */
-.quotes blockquote { border-left-color: var(--red); }
+@media (max-width: 860px) { main.case .research-block.tldr { grid-template-columns: 1fr; gap: var(--s2); } main.case .research-block.tldr > h3 { justify-self: start; text-align: left; font-size: 2.25rem; } }
