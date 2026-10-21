@@ -380,3 +380,30 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 
 /* Nook: text runs the full width of the centred column */
 main.case p, main.case .body, main.case .callout-q, main.case .problem-q { max-width: none; }
+
+/* ---------- Nook: Framer-style section labels and problem stats ---------- */
+/* Every section label gets a full-width rule under it */
+main.case section > .eyebrow,
+main.case .sub > .eyebrow,
+main.case .meta-grid .eyebrow {
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s1);
+}
+main.case section > .eyebrow { margin-bottom: var(--s1); }
+main.case section.ruled { border-top: 0; padding-top: 0; }
+
+main.case .sub { gap: var(--s2); margin-top: var(--s4); }
+main.case .meta-grid { border-top: 0; padding-top: 0; margin-top: var(--s5); column-gap: var(--s3); }
+main.case .meta-grid ul.plain { margin-top: var(--s2); gap: 12px; font-size: var(--t-lead); }
+
+/* Problem: big serif statement, then the two stats stacked */
+main.case #problem > .subheader { margin-top: var(--s2); }
+main.case .stats { grid-template-columns: 1fr; gap: var(--s5); margin-top: var(--s5); }
+main.case .stat { gap: var(--s2); }
+main.case .stat h3 { font-size: clamp(1.5rem, 1.2rem + .8vw, 1.875rem); font-weight: 500; line-height: 1.3; }
+main.case .stat p { font-size: var(--t-lead); line-height: 1.5; }
+main.case .stat .source { font-size: var(--t-small); font-style: italic; margin-top: calc(var(--s2) * -1 + 4px); }
+.hl, .hl-link { color: var(--red); }
+.hl-link:hover { text-decoration: underline; text-underline-offset: 3px; }
