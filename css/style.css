@@ -430,6 +430,7 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 .quotes blockquote p { font-size: var(--t-lead); }
 .quotes cite { font-style: normal; font-weight: 500; color: var(--secondary-brown); }
 .quotes { grid-template-columns: 1fr 1fr; }
+.q-note { font-size: 13px; color: var(--secondary-brown); margin-top: 4px; }
 .quotes .q-context { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-brown); }
 @media (max-width: 860px) { .quotes { grid-template-columns: 1fr; } }
 
