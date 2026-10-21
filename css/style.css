@@ -333,7 +333,9 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
   padding: var(--s4); border-radius: var(--radius); min-height: 300px;
   background: rgb(138, 129, 120) url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png') center / cover;
 }
-.feature-card img { max-height: 300px; width: auto; max-width: 100%; align-self: center; object-fit: contain; }
+.card-grid .feature-card { justify-content: flex-start; }
+.feature-card img { height: 300px; width: 100%; object-fit: contain; }
+@media (max-width: 860px) { .feature-card img { height: 220px; } }
 .feature-card h3 { font-family: var(--serif); font-weight: 400; font-size: var(--t-h3); line-height: 1.2; }
 .feature-card p { font-size: var(--t-body); }
 .feature-card.tall { padding: var(--s5); }
