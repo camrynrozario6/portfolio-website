@@ -621,10 +621,10 @@ main.case .sol > h2.subheader {
   .gallery-page .intro { gap: var(--s2); margin-bottom: var(--s5); }
 }
 
-/* TLDR: four findings in a 2x2 grid, dotted dividers, no fill */
-main.case .research-block.tldr { display: flex; flex-direction: column; gap: 20px; }
+/* TLDR: summary card with the four findings in a 2x2 grid */
+main.case .research-block.tldr { display: flex; flex-direction: column; gap: 20px; padding: 36px 40px 40px; border-radius: var(--radius); background: rgba(61, 52, 45, 0.05); }
 main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 2rem; line-height: 1; }
 .tldr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
-.tldr-list li { font-size: 1rem; line-height: 1.55; padding-top: 16px; border-top: 3px dotted rgba(61, 52, 45, 0.45); }
+.tldr-list li { font-size: 1rem; line-height: 1.55; padding-top: 16px; border-top: 1px solid var(--line); }
 .tldr-list strong { display: block; font-weight: 600; font-size: 1.125rem; margin-bottom: 4px; }
-@media (max-width: 860px) { .tldr-list { grid-template-columns: 1fr; gap: 20px; } }
+@media (max-width: 860px) { main.case .research-block.tldr { padding: 24px; } .tldr-list { grid-template-columns: 1fr; gap: 20px; } }
