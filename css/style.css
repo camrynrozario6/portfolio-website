@@ -407,3 +407,12 @@ main.case .stat p { font-size: var(--t-lead); line-height: 1.5; }
 main.case .stat .source { font-size: var(--t-small); font-style: italic; margin-top: calc(var(--s2) * -1 + 4px); }
 .hl, .hl-link { color: var(--red); }
 .hl-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Nook: equal space on both sides of the content (measured from the menu's edge to the window's edge) */
+@media (min-width: 861px) {
+  body:has(main.case) .shell { max-width: none; }
+  main.case.page {
+    padding-right: clamp(48px, 7vw, 200px);
+    padding-left: max(0px, calc(clamp(48px, 7vw, 200px) - var(--gutter)));
+  }
+}
