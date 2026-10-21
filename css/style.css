@@ -492,3 +492,6 @@ main.case #problem > .subheader { margin-top: 0; }
 main.case .sub { margin-top: var(--s3); }
 main.case .sub > .eyebrow { margin-bottom: 0; }
 main.case .meta-grid { margin-top: 40px; }
+
+/* Nav: Home, About, Resume in Caladea */
+.nav-top a:not(.logo), .nav-top span { font-family: var(--serif); font-size: 1.375rem; letter-spacing: 0; line-height: 1.25; }
