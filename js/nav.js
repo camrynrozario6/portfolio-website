@@ -38,12 +38,13 @@
     ]}
   ];
 
-  var page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
+  var page = (location.pathname.split("/").pop() || "home.html").replace(/\.html$/, "") || "home";
+  if (page === "index") page = "home";
 
   function link(l) {
     if (!l.href) return '<span' + (l.plain ? "" : ' class="muted"') + ">" + l.text + "</span>";
     var target = l.href.replace(/\.html$/, "");
-    var active = target === page || (page === "index" && target === "index") ? ' class="active" aria-current="page"' : "";
+    var active = target === page || (page === "home" && target === "home") ? ' class="active" aria-current="page"' : "";
     var ext = /^https?:/.test(l.href) ? ' target="_blank" rel="noopener"' : "";
     return '<a href="' + l.href + '"' + active + ext + ">" + l.text + "</a>";
   }
@@ -56,8 +57,8 @@
     var sections = el.dataset.nav === "nook" ? nook : main;
     var top =
       '<div class="nav-section nav-top">' +
-        '<a class="logo" href="index.html" aria-label="Home">' + FISH + "</a>" +
-        link({ text: "Home", href: "index.html" }) +
+        '<a class="logo" href="home.html" aria-label="Home">' + FISH + "</a>" +
+        link({ text: "Home", href: "home.html" }) +
         link({ text: "About", href: "about.html" }) +
         link({ text: "Resume", href: RESUME, plain: true }) +
       "</div>";
@@ -96,7 +97,7 @@
   // Mobile menu
   var bar = document.createElement("header");
   bar.className = "mobile-bar";
-  bar.innerHTML = '<a class="logo" href="index.html" aria-label="Home">' + FISH + '</a><button class="menu-btn" aria-expanded="false" aria-label="Open menu"><span class="bars" aria-hidden="true"><span></span><span></span></span></button>';
+  bar.innerHTML = '<a class="logo" href="home.html" aria-label="Home">' + FISH + '</a><button class="menu-btn" aria-expanded="false" aria-label="Open menu"><span class="bars" aria-hidden="true"><span></span><span></span></span></button>';
   var scrim = document.createElement("div");
   scrim.className = "scrim";
   document.body.prepend(scrim);
