@@ -217,6 +217,10 @@ main {
 }
 .short-frame { width: 100%; height: 100%; border: 0; border-radius: var(--radius); background: #000; }
 
+/* Full-bleed video hero: the video fills the box, no background behind it */
+.case-hero--video, .case-hero--video[class] { height: auto; padding: 0; background: #f7f5f1; }
+.case-hero--video .np { width: 100%; max-width: none; aspect-ratio: 16 / 9; border-radius: 0; }
+
 /* Nook header video player */
 .np { position: relative; width: min(100%, 820px); height: auto; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; }
 .np video { display: block; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
