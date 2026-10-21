@@ -547,7 +547,8 @@ main.case .research-block > .embed-frame,
 main.case .research-block > .survey,
 main.case .research-block > .quotes { margin-top: 0; }
 main.case .survey > div { gap: 12px; }
-main.case .survey img { margin-top: 12px; }
+main.case .survey img { margin-top: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center top; }  /* equal size, bottoms aligned */
+main.case .survey p { margin-bottom: 12px; }
 main.case .quotes blockquote p { font-size: 1.25rem; }
 
 /* Lo-fi → reflections */
