@@ -9,15 +9,15 @@ var VISIBLE=0.5; /* how much of the slideshow must be on screen before it starts
 /* One line per slide, in order: [full image URL, tab label].
    Any image host works. To add a slide, put a comma after the last line and add ["URL","Label"]. */
 var SLIDES=[
-["https://framerusercontent.com/images/eeVgf28ENjJsXE42mCb61uRM.png","Title"],
-["https://framerusercontent.com/images/u1E647hLevZqDYMMqLRpRMneY0.png","Contents"],
-["https://framerusercontent.com/images/EjUd1NzocdOVexQtZdCpqrSUSDY.png","Overview"],
-["https://framerusercontent.com/images/Yx7LlSuwfDPAumnEJFrMlgWIpNE.png","Logo"],
-["https://framerusercontent.com/images/BM0SafY3xuGrSqSE4kEZaDqytsQ.png","Colour"],
-["https://framerusercontent.com/images/aIbdxo13WIuy9VXOYaxbdaJ7Y.png","Typography"],
-["https://framerusercontent.com/images/Q5Ws5Qv6WKah27obj8wxwYEAeas.png","Iconography"],
-["https://framerusercontent.com/images/DXczVBxfJkOnoHSPNKezraVNA.png","Imagery"],
-["https://framerusercontent.com/images/Q8DLAXY5ETuOQ0reTuVjrumVGY.png","Layout"]
+["../assets/nook-guidelines-01.jpg","Title"],
+["../assets/nook-guidelines-02.jpg","Contents"],
+["../assets/nook-guidelines-03.jpg","Overview"],
+["../assets/nook-guidelines-04.jpg","Logo"],
+["../assets/nook-guidelines-05.jpg","Colour"],
+["../assets/nook-guidelines-06.jpg","Typography"],
+["../assets/nook-guidelines-07.jpg","Iconography"],
+["../assets/nook-guidelines-08.jpg","Imagery"],
+["../assets/nook-guidelines-09.jpg","Layout"]
 ];
 (function(){var S=SLIDES,n=S.length,R=document.querySelectorAll('.nkc'),c=R[R.length-1],q=function(s){return c.querySelector(s)},t=q('.t'),x=q('.x'),st=q('.s'),pos=0,hov=false,vis=false,cur=-1,tw=null,last=null,a=null;
 function add(k,clone){var m=new Image();m.src=S[k][0];m.alt=clone?'':(S[k][1]||'Slide '+(k+1));m.draggable=false;t.appendChild(m)}
