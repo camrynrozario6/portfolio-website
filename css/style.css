@@ -348,16 +348,6 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 }
 .shot-row img { width: 100%; height: auto; }
 
-/* captions under the host verification phones */
-.step-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s3); padding: 0 var(--s4); margin-top: var(--s2); }
-.step-row > div { display: flex; flex-direction: column; gap: 6px; }
-.step-row .num { font-size: var(--t-small); color: var(--secondary-brown); }
-.step-row h3 { font-family: var(--serif); font-weight: 400; font-size: 1.375rem; line-height: 1.2; }
-.step-row p { font-size: var(--t-small); line-height: 1.5; }
-.step-intro { margin-top: var(--s3); }
-@media (max-width: 860px) { .step-row { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; row-gap: var(--s3); } }
-@media (max-width: 520px) { .step-row { grid-template-columns: 1fr; } }
-
 .research-block { display: flex; flex-direction: column; gap: var(--s1); margin-top: var(--s6); }
 .minor { font-size: var(--t-lead); font-weight: 600; }
 
