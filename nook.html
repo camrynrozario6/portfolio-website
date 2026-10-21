@@ -110,7 +110,22 @@
         <div class="sol">
           <h2 class="subheader">01 Discover Activities &amp; Social Spots</h2>
           <p>Users toggle between Activities and Social Spots depending on intent.</p>
-          <video class="sol-video" src="assets/nook-discover.mp4" poster="assets/nook-discover-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Switching from events to social spots in nook"></video>
+          <div class="np np--sol" data-player>
+            <video class="sol-video" src="assets/nook-discover.mp4" poster="assets/nook-discover-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Switching from events to social spots in nook"></video>
+            <button class="np-big" type="button" aria-label="Play" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z"/><path class="i-replay" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+            </button>
+            <div class="np-bar">
+              <button class="np-btn np-toggle" type="button" aria-label="Pause">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5.5v13l11-6.5z"/></svg>
+              </button>
+              <input class="np-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Seek video">
+              <span class="np-time" aria-live="off">0:00</span>
+              <button class="np-btn np-replay" type="button" aria-label="Replay from start">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- 02 -->
@@ -151,7 +166,22 @@
           <h2 class="subheader">03 Filter for Recurring Events</h2>
           <p>Friendships don’t form at a single event. They grow from seeing the same faces week after week. So users can filter for recurring events on the days that suit them and see who the regulars are, making it easy to keep showing up until familiar faces become <span class="hl">long-lasting friends</span>.</p>
           <div class="feature-split">
-            <video class="sol-video" src="assets/nook-recurring.mp4" poster="assets/nook-recurring-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Filtering for recurring events and seeing the regulars in nook"></video>
+            <div class="np np--sol" data-player>
+              <video class="sol-video" src="assets/nook-recurring.mp4" poster="assets/nook-recurring-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Filtering for recurring events and seeing the regulars in nook"></video>
+              <button class="np-big" type="button" aria-label="Play" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z"/><path class="i-replay" d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+              </button>
+              <div class="np-bar">
+                <button class="np-btn np-toggle" type="button" aria-label="Pause">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5.5v13l11-6.5z"/></svg>
+                </button>
+                <input class="np-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Seek video">
+                <span class="np-time" aria-live="off">0:00</span>
+                <button class="np-btn np-replay" type="button" aria-label="Replay from start">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+                </button>
+              </div>
+            </div>
             <div class="split-stack">
               <div class="feature-card">
                 <img src="assets/nook-weekly-days.png" alt="Frequency filter set to Weekly, on Thursday and Sunday" loading="lazy">
@@ -253,10 +283,10 @@
       });
     });
   </script>
-  <script>/* Nook header video player: play/pause, scrub, replay, autoplay on load */
+  <script>/* Nook video players (header + key solutions): play/pause, scrub, replay, autoplay on load */
   (function () {
-    var root = document.querySelector("[data-player]");
-    if (!root) return;
+    document.querySelectorAll("[data-player]").forEach(initPlayer);
+    function initPlayer(root) {
     var v = root.querySelector("video"), toggle = root.querySelector(".np-toggle"),
         big = root.querySelector(".np-big"), seek = root.querySelector(".np-seek"),
         time = root.querySelector(".np-time"), replay = root.querySelector(".np-replay"), scrubbing = false, wasPlaying = false;
@@ -295,6 +325,7 @@
     if (v.readyState >= 1) progress();
     play();
     sync();
+    }
   })();
   </script>
 </body>
