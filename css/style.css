@@ -367,3 +367,13 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 @media (max-width: 520px) {
   .cv-entry.job { grid-template-columns: 1fr; gap: var(--s1); }
 }
+
+/* ---------- Case study margins: content centred with roomy side space ---------- */
+@media (min-width: 861px) {
+  main.case.page {
+    max-width: none;
+    padding-left: clamp(48px, 7vw, 200px);
+    padding-right: clamp(48px, 7vw, 200px);
+  }
+  main.case > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+}
