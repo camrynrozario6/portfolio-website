@@ -429,6 +429,9 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 .quotes blockquote { margin: 0; padding: var(--s3); border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: var(--s1); }
 .quotes blockquote p { font-size: var(--t-lead); }
 .quotes cite { font-style: normal; font-weight: 500; color: var(--secondary-brown); }
+.quotes { grid-template-columns: 1fr 1fr; }
+.quotes .q-context { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-brown); }
+@media (max-width: 860px) { .quotes { grid-template-columns: 1fr; } }
 
 @media (max-width: 860px) {
   .meta-grid, .stats, .card-grid, .two-up, .survey { grid-template-columns: 1fr; }
