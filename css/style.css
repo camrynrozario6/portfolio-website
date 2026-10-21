@@ -347,6 +347,9 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
   background: rgb(138, 129, 120) url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png') center / cover;
 }
 .shot-row img { width: 100%; height: auto; }
+.shot-caption { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 4px; margin-top: var(--s2); }
+.shot-caption h3 { font-family: var(--serif); font-weight: 400; font-size: var(--t-h3); line-height: 1.2; }
+.shot-caption p { font-size: var(--t-body); }
 
 .research-block { display: flex; flex-direction: column; gap: var(--s1); margin-top: var(--s6); }
 .minor { font-size: var(--t-lead); font-weight: 600; }
