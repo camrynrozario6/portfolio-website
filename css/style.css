@@ -215,10 +215,10 @@ main {
   background: var(--secondary-brown) center / cover no-repeat;
   display: flex; align-items: center; justify-content: center; padding: var(--s4);
 }
-.short-frame { width: 254px; height: 450px; border: 0; border-radius: var(--radius); background: #000; }
+.short-frame { width: 100%; height: 100%; border: 0; border-radius: var(--radius); background: #000; }
 
 /* Nook header video player */
-.np { position: relative; width: 254px; height: 450px; border-radius: var(--radius); overflow: hidden; }
+.np { position: relative; width: min(100%, 820px); height: auto; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; }
 .np video { display: block; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
 .np svg { width: 18px; height: 18px; fill: currentColor; display: block; }
 .np .i-play, .np .i-replay { display: none; }
