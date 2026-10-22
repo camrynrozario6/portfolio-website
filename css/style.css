@@ -626,5 +626,7 @@ main.case .research-block.tldr { display: flex; flex-direction: column; gap: 20p
 main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 2rem; line-height: 1; }
 .tldr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
 .tldr-list li { font-size: 1rem; line-height: 1.55; }
+.tldr-list li:nth-child(n+3) { padding-top: 16px; border-top: 1px solid var(--line); }  /* divider between rows only */
+@media (max-width: 860px) { .tldr-list li:nth-child(n+2) { padding-top: 16px; border-top: 1px solid var(--line); } }
 .tldr-list strong { display: block; font-weight: 600; font-size: 1.125rem; margin-bottom: 4px; }
 @media (max-width: 860px) { main.case .research-block.tldr { padding: 24px; } .tldr-list { grid-template-columns: 1fr; gap: 20px; } }
