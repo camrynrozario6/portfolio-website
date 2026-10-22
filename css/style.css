@@ -164,7 +164,8 @@ main {
 
 /* ---------- About ---------- */
 .about-top { display: grid; grid-template-columns: minmax(260px, 0.42fr) 1fr; gap: var(--s5); align-items: center; }
-.polaroid-embed { width: 100%; aspect-ratio: 4 / 5; height: auto; max-height: 640px; border: 0; display: block; }
+/* sized so the photo area inside the polaroid is 3:4, matching the photo */
+.polaroid-embed { width: 100%; aspect-ratio: 0.661; height: auto; border: 0; display: block; }
 .about-intro { display: flex; flex-direction: column; gap: var(--s2); }
 .about-intro .xl-header { margin-bottom: 0; }
 .about-intro .big-body { margin-top: calc(var(--s1) * -1); }
