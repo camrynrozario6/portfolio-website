@@ -623,12 +623,12 @@ main.case .sol > h2.subheader {
 
 /* TLDR: summary card with the four findings in a 2x2 grid */
 main.case .research-block.tldr { display: flex; flex-direction: column; gap: 20px; }
-main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 2rem; line-height: 1; display: flex; align-items: flex-end; gap: 8px; }
-/* Playful bouncing "!" next to TLDR, with spark lines on landing */
-.tldr-bang { position: relative; display: inline-block; font-family: var(--serif); font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--red); transform-origin: 50% 100%; animation: tldr-hop 2.4s cubic-bezier(.3,.7,.4,1) infinite; margin-left: 2px; }
+main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 2rem; line-height: 1; display: flex; align-items: flex-end; gap: 0; }
+/* Playful bouncing "?" in TLDR?, with spark lines on landing */
+.tldr-bang { position: relative; display: inline-block; font-family: var(--serif); font-style: normal; font-size: 1em; line-height: 1; color: var(--red); transform-origin: 50% 100%; animation: tldr-hop 2.4s cubic-bezier(.3,.7,.4,1) infinite; margin-left: 1px; }
 .tldr-bang::before, .tldr-bang::after { content: ""; position: absolute; width: 3px; height: 10px; border-radius: 3px; background: #E8743B; top: 2px; opacity: 0; animation: tldr-spark 2.4s ease-out infinite; }
-.tldr-bang::before { left: -9px; transform: rotate(-35deg); }
-.tldr-bang::after { right: -11px; transform: rotate(35deg); }
+.tldr-bang::before { left: -6px; top: -4px; transform: rotate(-35deg); }
+.tldr-bang::after { right: -8px; top: -4px; transform: rotate(35deg); }
 @keyframes tldr-hop {
   0%, 60%, 100% { transform: translateY(0) rotate(8deg) scale(1, 1); }
   68% { transform: translateY(0) rotate(8deg) scale(1.12, .86); }
