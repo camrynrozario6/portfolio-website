@@ -27,7 +27,7 @@
   var nook = [
     { label: "Nook Index", links: [
       { text: "Overview", href: "#overview" },
-      { text: "Problem", href: "#problem" },
+      { text: "Hypothesis Problem", href: "#problem" },
       { text: "Key Solutions", href: "#solutions" },
       { text: "User Research", href: "#research" },
       { text: "Lo Fi Sketches", href: "#lofi" },
@@ -42,7 +42,7 @@
   var supplysync = [
     { label: "SupplySync Index", links: [
       { text: "Overview", href: "#overview" },
-      { text: "Problem", href: "#problem" }
+      { text: "Hypothesis Problem", href: "#problem" }
     ]}
   ];
 
