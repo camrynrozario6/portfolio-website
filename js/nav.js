@@ -14,9 +14,9 @@
   var main = [
     { label: "Product Design", links: [
       { text: "Nook", href: "nook.html" },
+      { text: "CIBC", href: "" },
       { text: "SupplySync", href: "procurement.html" },
-      { text: "Placeholder", href: "" },
-      { text: "Placeholder", href: "" }
+      { text: "PRESTO", href: "" }
     ]},
     { label: "Playground", links: [
       { text: "Paintings", href: "paintings.html" },
