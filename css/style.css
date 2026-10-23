@@ -161,7 +161,7 @@ main {
 .project p { font-size: var(--t-body); }
 .project p.meta { color: var(--primary-brown); font-weight: 500; margin-top: auto; } /* sits at the bottom so cards in a row line up */
 .project.soon { pointer-events: none; }
-.project.soon .thumb { display: grid; place-items: center; color: #fff; font-size: var(--t-label); letter-spacing: var(--track); text-transform: uppercase; }
+.project.soon .thumb, .thumb.placeholder { display: grid; place-items: center; color: #fff; font-size: var(--t-label); letter-spacing: var(--track); text-transform: uppercase; }
 
 /* ---------- About ---------- */
 .about-top { display: grid; grid-template-columns: minmax(260px, 0.42fr) 1fr; gap: var(--s5); align-items: center; }
@@ -213,6 +213,7 @@ main {
 @media (prefers-reduced-motion: reduce) { .mg-item figcaption { transition: none; } }
 
 /* ---------- Case study (Nook) ---------- */
+.case-hero.placeholder { background: rgb(133, 147, 161); }
 .case-hero {
   height: 530px; border-radius: var(--radius); overflow: hidden;
   background: var(--secondary-brown) center / cover no-repeat;
