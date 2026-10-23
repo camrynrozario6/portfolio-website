@@ -1,6 +1,6 @@
 /* ============================================================
    Shared navigation — edit links here and every page updates.
-   Each page has <aside class="site-nav" data-nav="main|nook">.
+   Each page has <aside class="site-nav" data-nav="main|nook|supplysync">.
    ============================================================ */
 (function () {
   var FISH =
@@ -38,6 +38,14 @@
     ]}
   ];
 
+  // SupplySync index: add a line here (and a matching <section id="...">) as each part of the case study is finished
+  var supplysync = [
+    { label: "SupplySync Index", links: [
+      { text: "Overview", href: "#overview" },
+      { text: "Hypothesis", href: "#hypothesis" }
+    ]}
+  ];
+
   var page = (location.pathname.split("/").pop() || "home.html").replace(/\.html$/, "") || "home";
   if (page === "index") page = "home";
 
@@ -54,7 +62,7 @@
   }
 
   document.querySelectorAll(".site-nav").forEach(function (el) {
-    var sections = el.dataset.nav === "nook" ? nook : main;
+    var sections = { nook: nook, supplysync: supplysync }[el.dataset.nav] || main;
     var top =
       '<div class="nav-section nav-top">' +
         '<a class="logo" href="home.html" aria-label="Home">' + FISH + "</a>" +
