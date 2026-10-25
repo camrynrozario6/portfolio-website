@@ -87,6 +87,11 @@
             <p class="source">Sources: Deloitte (2025); Kembro et al. (2024). <a href="https://www.deloitte.com/us/en/about/press-room/2025-chief-procurement-officer-survey.html" target="_blank" rel="noopener">Deloitte report<span aria-hidden="true">&nbsp;↗</span></a> · <a href="https://doi.org/10.1080/09537287.2024.2331742" target="_blank" rel="noopener">Academic study<span aria-hidden="true">&nbsp;↗</span></a></p>
           </div>
         </div>
+
+        <div class="research-block">
+          <h3 class="minor">Competitor Analysis</h3>
+          <iframe class="embed-frame" src="embeds/supplysync-competitors.html" title="Gaps in SAP Ariba, Oracle, Dynamics 365 and Coupa" loading="lazy"></iframe>
+        </div>
       </section>
 
       <section id="status">
@@ -98,5 +103,14 @@
     </main>
   </div>
   <script src="js/nav.js"></script>
+  <script>
+    /* Size each embed to its content (embeds report their height) */
+    window.addEventListener("message", function (e) {
+      if (!e.data || !e.data.embedHeight) return;
+      document.querySelectorAll("iframe.embed-frame").forEach(function (f) {
+        if (f.contentWindow === e.source) f.style.height = e.data.embedHeight + "px";
+      });
+    });
+  </script>
 </body>
 </html>
