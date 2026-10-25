@@ -40,18 +40,18 @@
     /* every size below scales smoothly between ~320px and ~1040px of width */
     --gap:    clamp(6px, 5.1px + 0.28cqi, 8px);
     --head:   clamp(15px, 11px + 1.25cqi, 24px);
-    --title:  clamp(18px, 15.33px + 0.833cqi, 24px);
-    --desc:   clamp(16px, 14.22px + 0.556cqi, 20px);
-    --icon:   clamp(34px, 31.33px + 0.833cqi, 42px);
-    --mark:   clamp(22px, 19.33px + 0.833cqi, 28px);
-    --row-y:  clamp(16px, 13.33px + 0.833cqi, 22px);
+    --title:  clamp(16px, 14.6px + 0.4cqi, 19px);
+    --desc:   clamp(14px, 13.3px + 0.2cqi, 16px);
+    --icon:   clamp(26px, 24.7px + 0.4cqi, 30px);
+    --mark:   clamp(18px, 17.3px + 0.2cqi, 20px);
+    --row-y:  clamp(10px, 9.3px + 0.2cqi, 12px);
   }
   .card{ padding:4px 0 0; }
 
   .grid,
   .row{
     display:grid;
-    grid-template-columns: minmax(0,2.8fr) repeat(4, minmax(0,1fr));
+    grid-template-columns: minmax(0,2.4fr) repeat(4, minmax(0,1fr));
     align-items:center;
     column-gap:var(--gap);
   }
@@ -182,7 +182,7 @@
   }
 
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-  .head-cell{ font-size:calc(var(--head) * 0.8); }
+  .head-cell{ font-size:clamp(13px, 12.3px + 0.2cqi, 15px); }
   .mark.yes svg{ color:var(--ink); }
   .note{ margin:10px 0 0; font-size:clamp(12.5px, 11.8px + 0.21cqi, 14px); color:var(--sub); }
 </style>
@@ -193,7 +193,7 @@
     <div class="head-spacer"></div>
     <div class="head-cell">SAP Ariba</div>
     <div class="head-cell">Oracle</div>
-    <div class="head-cell">Dynamics 365</div>
+    <div class="head-cell">Dynamics</div>
     <div class="head-cell">Coupa</div>
   </div>
   <div class="row">
@@ -201,7 +201,7 @@
       <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(-6deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#F2B8C6"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 11h3l1.6 4-2 1.3a10 10 0 0 0 5.1 5.1l1.3-2 4 1.6v3a2 2 0 0 1-2 2A15 15 0 0 1 12 13a2 2 0 0 1 2-2z" fill="#FDF8EE"/></g></svg></span>
       <div class="feature-text">
         <p class="feature-title">Calls and side spreadsheets</p>
-        <p class="feature-desc">Updates agreed by phone or tracked in a purchaser's own spreadsheet <b>never reach the order</b></p>
+        <p class="feature-desc">These updates <b>never reach the order</b></p>
       </div>
     </div>
     <div class="status"><span class="mark miss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
@@ -214,7 +214,7 @@
       <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(5deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#9EC7E8"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="20" height="14" rx="2" fill="#FDF8EE"/><path d="m10.5 14 9.5 7 9.5-7"/></g></svg></span>
       <div class="feature-text">
         <p class="feature-title">Suppliers outside the portal</p>
-        <p class="feature-desc">Every tool assumes the supplier <b>has joined its portal</b>; Dynamics lets buyers confirm email replies by hand</p>
+        <p class="feature-desc">Assumes the supplier <b>uses the portal</b></p>
       </div>
     </div>
     <div class="status"><span class="mark miss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
@@ -227,7 +227,7 @@
       <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(-4deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#C8B3E6"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="9.5" fill="#FDF8EE"/><path d="M20 14.5V20l3.5 2.2"/></g></svg></span>
       <div class="feature-text">
         <p class="feature-title">Follow-up after confirmation</p>
-        <p class="feature-desc">SAP only reminds suppliers about <b>unconfirmed</b> POs and Oracle shows who an order is waiting on; nothing chases a slipping date</p>
+        <p class="feature-desc">Nothing chases a <b>slipping delivery date</b></p>
       </div>
     </div>
     <div class="status"><span class="mark partial"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg></span></div>
@@ -239,8 +239,8 @@
     <div class="feature">
       <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(6deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#E8A93B"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 12h18a1.5 1.5 0 0 1 1.5 1.5v10A1.5 1.5 0 0 1 29 25h-9l-5 4v-4h-4A1.5 1.5 0 0 1 9.5 23.5v-10A1.5 1.5 0 0 1 11 12z" fill="#FDF8EE"/><path d="M15 18.5h10"/></g></svg></span>
       <div class="feature-text">
-        <p class="feature-title">Commitments from conversations</p>
-        <p class="feature-desc">A date promised in a comment or email <b>doesn't update the order</b>; Coupa keeps comments on the PO but doesn't track them</p>
+        <p class="feature-title">Promises in conversations</p>
+        <p class="feature-desc">A promised date <b>doesn't update the order</b></p>
       </div>
     </div>
     <div class="status"><span class="mark miss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
@@ -253,7 +253,7 @@
       <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(-5deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#9FD3B6"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M27.5 17a8 8 0 0 0-14.3-2.5M12.5 23a8 8 0 0 0 14.3 2.5"/><path d="M13 10.5v4.2h4.2M27 29.5v-4.2h-4.2"/></g></svg></span>
       <div class="feature-text">
         <p class="feature-title">Quick changes</p>
-        <p class="feature-desc">Changes go through <b>formal approval loops</b>; Oracle only takes proposals before acknowledgment and Coupa blocks new items</p>
+        <p class="feature-desc">Every change needs a <b>formal approval</b></p>
       </div>
     </div>
     <div class="status"><span class="mark partial"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg></span></div>
@@ -270,7 +270,7 @@
       present but shallow
     </div>
   </div>
-  <p class="note">Based on vendor documentation and supplier guides. Each company can configure these tools differently.</p>
+  <p class="note">Based on vendor documentation and supplier guides; setups vary by company.</p>
 </div>
 <script>/* tells the page how tall this embed is */(function(){function s(){parent.postMessage({embedHeight:Math.ceil(document.documentElement.getBoundingClientRect().height)},"*")}addEventListener("load",s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.documentElement);setTimeout(s,500);})();</script>
 </body>
