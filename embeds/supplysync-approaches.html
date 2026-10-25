@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SupplySync Competitor Approaches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3D342D;
+    --sub:#8A8178;
+    --divider:rgba(138,129,120,0.22);
+    --partial:#3D342D;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:transparent;
+    color:var(--ink);
+    font-family:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-size-adjust:100%;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* The component sizes itself to the space it's placed in (container queries),
+     not the browser window, so it works in any column, embed or frame. */
+  .wrap{
+    container-type:inline-size;
+    width:100%;
+    margin:0;
+  }
+
+  .card, .legend{
+    /* every size below scales smoothly between ~320px and ~1040px of width */
+    --gap:    clamp(6px, 5.1px + 0.28cqi, 8px);
+    --head:   clamp(15px, 11px + 1.25cqi, 24px);
+    --title:  clamp(16px, 14.6px + 0.4cqi, 19px);
+    --desc:   clamp(14px, 13.3px + 0.2cqi, 16px);
+    --icon:   clamp(26px, 24.7px + 0.4cqi, 30px);
+    --mark:   clamp(18px, 17.3px + 0.2cqi, 20px);
+    --row-y:  clamp(10px, 9.3px + 0.2cqi, 12px);
+  }
+  .card{ padding:4px 0 0; }
+
+  .grid,
+  .row{
+    display:grid;
+    grid-template-columns: minmax(0,2.4fr) repeat(4, minmax(0,1fr));
+    align-items:center;
+    column-gap:var(--gap);
+  }
+
+  .grid{ padding-top:clamp(12px, 9.3px + 0.83cqi, 18px); }
+
+  .head-cell{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.4em;
+    min-width:0;
+    font-size:var(--head);
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:1.2;
+    text-align:center;
+    color:var(--ink);
+    padding-bottom:clamp(10px, 8.2px + 0.56cqi, 14px);
+    border-bottom:1px solid var(--divider);
+  }
+
+  .head-cell .brand-mark{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    color:var(--ink);
+  }
+  .head-cell .brand-mark svg{ display:block; height:auto; }
+  .head-cell .brand-mark.mark-e svg{ width:0.85em; }
+  .head-cell .brand-mark.mark-m svg{ width:1.1em; }
+  .head-cell .brand-mark.mark-sparkle svg{ width:1.05em; }
+  .head-cell.brand-eventbrite, .head-cell.brand-eventbrite .brand-mark{ color:#F05537; }
+  .head-cell.brand-meetup, .head-cell.brand-meetup .brand-mark{ color:#ED1C40; }
+  .head-cell.brand-luma, .head-cell.brand-luma .brand-mark{ color:#131517; }
+
+  .row{
+    padding:var(--row-y) 0;
+    border-bottom:1px solid var(--divider);
+  }
+  .row:last-of-type{ border-bottom:none; }
+
+  .feature{
+    display:flex;
+    align-items:flex-start;
+    gap:clamp(12px, 10.22px + 0.556cqi, 16px);
+    padding-right:clamp(0px, 1.95cqi - 6px, 14px);
+    min-width:0;
+  }
+
+  .icon{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:2px;
+  }
+  .icon svg{ width:var(--icon); height:var(--icon); display:block; overflow:visible; }
+
+  .feature-text{ min-width:0; }
+
+  .feature-title{
+    font-size:var(--title);
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    line-height:1.35;
+    margin:0 0 0.2em;
+    overflow-wrap:anywhere;
+  }
+
+  .feature-desc{
+    font-size:var(--desc);
+    color:var(--sub);
+    line-height:1.5;
+    margin:0;
+    overflow-wrap:anywhere;
+  }
+
+  .feature-desc b{
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  .status{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+  }
+
+  .mark{ display:flex; }
+  .mark svg{ width:var(--mark); height:var(--mark); }
+  .mark.miss svg,
+  .mark.miss-strong svg{ color:var(--sub); }
+  .mark.partial svg{ color:var(--partial); }
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    margin-top:14px;
+    padding:0;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:clamp(12.5px, 11.8px + 0.21cqi, 14px);
+    font-style:italic;
+    color:var(--sub);
+  }
+  .legend-item .mark svg{ width:20px; height:20px; }
+
+  /* Narrow spaces: text takes the full width, the three marks sit underneath
+     in columns that line up with the headers */
+  @container (max-width: 600px){
+    .grid, .row{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .head-spacer{ display:none; }
+    .row{ row-gap:12px; }
+    .feature{ grid-column:1 / -1; padding-right:0; }
+  }
+
+  /* Very narrow: stack logo above name so headers never overflow */
+  @container (max-width: 380px){
+    .head-cell{ flex-direction:column; gap:5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+  .head-cell{ font-size:clamp(13px, 12.3px + 0.2cqi, 15px); }
+  .mark.yes svg{ color:var(--ink); }
+  .note{ margin:10px 0 0; font-size:clamp(12.5px, 11.8px + 0.21cqi, 14px); color:var(--sub); }
+</style>
+<style>
+  /* Text-cell version of the competitor table */
+  .grid, .row{ grid-template-columns: minmax(0,1.5fr) repeat(4, minmax(0,1fr)); }
+  .row{ align-items:start; padding:clamp(14px, 12px + 0.5cqi, 18px) 0; }
+  .cell{
+    min-width:0;
+    font-size:clamp(13px, 12.3px + 0.2cqi, 15px);
+    line-height:1.45;
+    color:var(--ink);
+    padding:2px 4px 0;
+    overflow-wrap:break-word;
+  }
+  .row.weak .cell{ color:var(--sub); font-style:italic; }
+  .cell .tname{ display:none; }
+
+  /* Narrow spaces: each problem stacks with the four tools listed underneath */
+  @container (max-width: 700px){
+    .grid{ display:none; }
+    .row{ display:block; }
+    .feature{ margin-bottom:6px; }
+    .cell{ padding:10px 0 10px calc(var(--icon) + 14px); border-top:1px solid var(--divider); }
+    .cell:first-of-type{ border-top:none; }
+    .cell .tname{ display:block; font-weight:500; font-style:normal; color:var(--ink); margin-bottom:2px; }
+  }
+</style>
+<body>
+<div class="wrap">
+  <div class="card">
+  <div class="grid">
+    <div class="head-spacer"></div>
+    <div class="head-cell">SAP Ariba</div>
+    <div class="head-cell">Oracle</div>
+    <div class="head-cell">Dynamics</div>
+    <div class="head-cell">Coupa</div>
+  </div>
+  <div class="row">
+    <div class="feature">
+      <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(-6deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#F2B8C6"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10 10 15l10 5 10-5z" fill="#FDF8EE"/><path d="m10 20 10 5 10-5M10 25l10 5 10-5"/></g></svg></span>
+      <div class="feature-text">
+        <p class="feature-title">Information is scattered</p>
+        <p class="feature-desc">How they bring orders <b>into one place</b></p>
+      </div>
+    </div>
+    <div class="cell"><span class="tname">SAP Ariba</span>Shared supplier network for purchase orders, confirmations, shipping and invoices</div>
+    <div class="cell"><span class="tname">Oracle</span>One portal per purchase order with change history, receipts, invoices and payments</div>
+    <div class="cell"><span class="tname">Dynamics</span>Vendor collaboration portal linked to the ERP</div>
+    <div class="cell"><span class="tname">Coupa</span>Supplier portal showing all of a buyer's purchase orders in one place</div>
+  </div>
+  <div class="row">
+    <div class="feature">
+      <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(5deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#C8B3E6"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="9.5" fill="#FDF8EE"/><path d="M20 14.5V20l3.5 2.2"/></g></svg></span>
+      <div class="feature-text">
+        <p class="feature-title">Chasing updates</p>
+        <p class="feature-desc">How they <b>cut down follow-ups</b></p>
+      </div>
+    </div>
+    <div class="cell"><span class="tname">SAP Ariba</span>Full, partial or split confirmations; automatic reminders for unconfirmed purchase orders</div>
+    <div class="cell"><span class="tname">Oracle</span>Acknowledgement deadlines; notifications to supplier</div>
+    <div class="cell"><span class="tname">Dynamics</span>Purchase order statuses like “In external review” and “Confirmed”</div>
+    <div class="cell"><span class="tname">Coupa</span>“Acknowledged” checkbox replaces email confirmations</div>
+  </div>
+  <div class="row">
+    <div class="feature">
+      <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(-4deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#E8A93B"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 12h18a1.5 1.5 0 0 1 1.5 1.5v10A1.5 1.5 0 0 1 29 25h-9l-5 4v-4h-4A1.5 1.5 0 0 1 9.5 23.5v-10A1.5 1.5 0 0 1 11 12z" fill="#FDF8EE"/><path d="M15 18.5h10"/></g></svg></span>
+      <div class="feature-text">
+        <p class="feature-title">Misalignment</p>
+        <p class="feature-desc">How they <b>keep both sides in sync</b></p>
+      </div>
+    </div>
+    <div class="cell"><span class="tname">SAP Ariba</span>Suppliers confirm revised dates or quantities on the purchase order</div>
+    <div class="cell"><span class="tname">Oracle</span>Supplier change requests routed to buyer for approval; purchase order revised automatically</div>
+    <div class="cell"><span class="tname">Dynamics</span>Vendor accepts, rejects or suggests changes; each approved purchase order saved as a version</div>
+    <div class="cell"><span class="tname">Coupa</span>Comments for change requests; history log on each purchase order</div>
+  </div>
+  <div class="row weak">
+    <div class="feature">
+      <span class="icon" aria-hidden="true"><svg viewBox="0 0 40 40" style="transform:rotate(6deg)"><rect x="1" y="1" width="38" height="38" rx="10" fill="#9EC7E8"/><g fill="none" stroke="#3D342D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10.5 30 28H10z" fill="#FDF8EE"/><path d="M20 17v5M20 25h.01"/></g></svg></span>
+      <div class="feature-text">
+        <p class="feature-title">Main weakness</p>
+        <p class="feature-desc">Where it <b>falls short</b></p>
+      </div>
+    </div>
+    <div class="cell"><span class="tname">SAP Ariba</span>Can't manually log supplier fulfillment updates</div>
+    <div class="cell"><span class="tname">Oracle</span>Heavy, enterprise-scale setup</div>
+    <div class="cell"><span class="tname">Dynamics</span>Vendors can bypass the portal via email; statuses can disagree if auto-confirm is off</div>
+    <div class="cell"><span class="tname">Coupa</span>Changes are informal comments, not structured approvals</div>
+  </div>
+  </div>
+  <p class="note">Based on vendor documentation and supplier guides; setups vary by company.</p>
+</div>
+<script>/* tells the page how tall this embed is */(function(){function s(){parent.postMessage({embedHeight:Math.ceil(document.documentElement.getBoundingClientRect().height)},"*")}addEventListener("load",s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.documentElement);setTimeout(s,500);})();</script>
+</body>
+</html>
