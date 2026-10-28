@@ -683,3 +683,11 @@ main.case .pain-card .pain-label { font-size: 0.875rem; font-style: italic; colo
 /* SupplySync: initial assumptions (subsection of The Starting Point) */
 main.case .assumptions .assumptions-title { font-family: var(--serif); font-weight: 400; font-size: 1.75rem; line-height: 1.25; color: var(--primary-brown); }
 main.case .assumptions .pain-grid { margin-top: 0; }
+
+/* SupplySync: discovery & research findings (nook survey layout) */
+main.case .findings-survey .evidence { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(138, 129, 120, 0.3); }
+main.case .findings-survey .evidence li { font-size: 1rem; line-height: 1.5; color: var(--secondary-brown); }
+main.case .findings-survey .evidence .hl { font-weight: 600; }
+main.case .findings-survey .source { margin-top: 0; }
+main.case .finding-illo { margin-top: auto; border-radius: var(--radius); background: rgba(138, 129, 120, 0.12); color: var(--primary-brown); padding: var(--s2); aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; }
+main.case .finding-illo svg { width: 100%; height: auto; }
