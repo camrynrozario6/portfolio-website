@@ -42,8 +42,9 @@
   var supplysync = [
     { label: "SupplySync Index", links: [
       { text: "Overview", href: "#overview" },
-      { text: "Hypothesis Problem", href: "#problem" },
-      { text: "User Research", href: "#research" }
+      { text: "The Starting Point", href: "#starting-point" },
+      { text: "Initial Assumptions", href: "#assumptions" },
+      { text: "Research Question", href: "#research-question" }
     ]}
   ];
 
