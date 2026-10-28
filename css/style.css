@@ -682,7 +682,7 @@ main.case .pain-card .pain-label { font-size: 0.875rem; font-style: italic; colo
 
 /* SupplySync: initial assumptions (subsection of The Starting Point) */
 main.case .assumptions .assumptions-title { font-family: var(--serif); font-weight: 400; font-size: 1.75rem; line-height: 1.25; color: var(--primary-brown); }
-main.case .assumptions .pain-grid { margin-top: 0; }
+main.case .assumptions .finding-grid { margin-top: 0; }
 
 /* SupplySync: discovery & research findings (boxed cards) */
 main.case .finding-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
@@ -702,6 +702,7 @@ main.case .evidence-block .source { margin-top: auto; padding-top: 4px; font-siz
   @media (min-width: 1001px) {
     main.case .finding-card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 12px; }
     main.case .finding-illo { margin-bottom: 0; padding-bottom: var(--s1); }
+    main.case .assumption-card .evidence-label { margin-bottom: -6px; }
   }
 }
 @media (max-width: 1000px) { main.case .finding-grid { grid-template-columns: 1fr; } }
