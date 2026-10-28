@@ -697,4 +697,11 @@ main.case .evidence { list-style: none; padding: 0; margin: 0; display: flex; fl
 main.case .evidence li { font-size: 0.9375rem; line-height: 1.5; color: var(--secondary-brown); }
 main.case .evidence .hl { font-weight: 600; }
 main.case .evidence-block .source { margin-top: auto; padding-top: 4px; font-size: 0.9375rem; }
+/* subgrid: titles, descriptions and evidence dividers line up across the three cards */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 1001px) {
+    main.case .finding-card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 12px; }
+    main.case .finding-illo { margin-bottom: 0; padding-bottom: var(--s1); }
+  }
+}
 @media (max-width: 1000px) { main.case .finding-grid { grid-template-columns: 1fr; } }
