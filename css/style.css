@@ -679,3 +679,7 @@ main.case .pain-card .source { margin-top: auto; padding-top: var(--s1); font-si
 main.case .pain-card .pain-label { font-size: 0.875rem; font-style: italic; color: var(--secondary-brown); margin-bottom: -4px; }
 .pain-card .source a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 1000px) { .pain-grid { grid-template-columns: 1fr; } }
+
+/* SupplySync: initial assumptions (subsection of The Starting Point) */
+main.case .assumptions .assumptions-title { font-family: var(--serif); font-weight: 400; font-size: 1.75rem; line-height: 1.25; color: var(--primary-brown); }
+main.case .assumptions .pain-grid { margin-top: 0; }

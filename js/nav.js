@@ -43,7 +43,6 @@
     { label: "SupplySync Index", links: [
       { text: "Overview", href: "#overview" },
       { text: "The Starting Point", href: "#starting-point" },
-      { text: "Initial Assumptions", href: "#assumptions" },
       { text: "Primary Research Question", href: "#research-question" }
     ]}
   ];
