@@ -712,3 +712,4 @@ main.case .stat-illo { display: grid; grid-template-columns: minmax(200px, 280px
 main.case .stat-illo .finding-illo { margin: 0; padding: var(--s3); border-radius: var(--radius); background: rgba(138, 129, 120, 0.12); }
 main.case .stat-text { display: flex; flex-direction: column; gap: var(--s2); }
 @media (max-width: 700px) { main.case .stat-illo { grid-template-columns: 1fr; gap: var(--s2); } }
+main.case .stat-illo .nook-illo { background: var(--illo-bg); }
