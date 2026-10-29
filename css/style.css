@@ -713,3 +713,11 @@ main.case .stat-illo .finding-illo { margin: 0; padding: var(--s3); border-radiu
 main.case .stat-text { display: flex; flex-direction: column; gap: var(--s2); }
 @media (max-width: 700px) { main.case .stat-illo { grid-template-columns: 1fr; gap: var(--s2); } }
 main.case .stat-illo .nook-illo { background: var(--illo-bg); }
+
+/* Nook key solutions: icon tiles + card colours from the nook icon palette (videos/screens unchanged) */
+main.case .sol-head { display: flex; align-items: center; gap: 14px; }
+main.case .sol-icon { flex: none; width: 40px; height: 40px; }
+main.case .sol-icon svg { width: 100%; height: 100%; display: block; overflow: visible; }
+#solutions .feature-card[style*="--tile"], #solutions .shot-row[style*="--tile"] { background: var(--tile); }
+#solutions .feature-card[style*="--tile"] h3, #solutions .feature-card[style*="--tile"] p,
+#solutions .shot-row[style*="--tile"] h3, #solutions .shot-row[style*="--tile"] p { color: #3D342D; }
