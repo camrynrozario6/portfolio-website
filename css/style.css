@@ -6,14 +6,14 @@
 
 :root {
   /* Colour (from your Framer styles) */
-  --primary-brown: rgb(61, 52, 45);
-  --secondary-brown: rgb(138, 129, 120);
+  --primary-brown: rgb(20, 20, 22);
+  --secondary-brown: rgb(107, 107, 112);
   --background-cream: rgb(249, 247, 244);
   --red: rgb(217, 4, 41);
   --green: rgb(15, 158, 89);
-  --line: rgba(61, 52, 45, 0.16);
+  --line: rgba(20, 20, 22, 0.16);
   --panel: rgba(255, 255, 255, 0.06);
-  --tag: rgba(138, 129, 120, 0.3);
+  --tag: rgba(107, 107, 112, 0.3);
 
   /* Fonts */
   --serif: "Caladea", Georgia, "Times New Roman", serif;
@@ -239,14 +239,14 @@ main {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 56px; height: 56px; border: 0; border-radius: 50%; cursor: pointer;
   display: grid; place-items: center; color: var(--background-cream);
-  background: rgba(61, 52, 45, 0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  background: rgba(20, 20, 22, 0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .np-big[hidden] { display: none; }
 .np-big svg { width: 24px; height: 24px; }
 .np-bar {
   position: absolute; left: 0; right: 0; bottom: 0;
   display: flex; align-items: center; gap: var(--s1); padding: 28px 10px 10px;
-  background: linear-gradient(to top, rgba(30, 25, 21, 0.7), rgba(30, 25, 21, 0));
+  background: linear-gradient(to top, rgba(20, 20, 22, 0.7), rgba(20, 20, 22, 0));
   color: var(--background-cream); font-family: var(--sans); font-size: 12px; font-variant-numeric: tabular-nums;
   opacity: 1; transition: opacity .25s ease;
 }
@@ -313,11 +313,11 @@ main {
   .site-nav {
     position: fixed; inset: 0 auto 0 0; width: min(300px, 86vw); max-height: none; height: 100%;
     background: var(--background-cream); transform: translateX(-102%); transition: transform .3s ease;
-    box-shadow: 0 0 40px rgba(61, 52, 45, .15); z-index: 20;
+    box-shadow: 0 0 40px rgba(20, 20, 22, .15); z-index: 20;
   }
   body.nav-open .site-nav { transform: none; }
   .nav-panel { min-height: 100%; }
-  .scrim { position: fixed; inset: 0; background: rgba(61, 52, 45, .25); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 19; }
+  .scrim { position: fixed; inset: 0; background: rgba(20, 20, 22, .25); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 19; }
   body.nav-open .scrim { opacity: 1; pointer-events: auto; }
 
   .mobile-bar {
@@ -379,7 +379,7 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 
 .embed-frame { width: 100%; height: 420px; border: 0; display: block; margin-top: var(--s3); background: transparent; }
 
-.callout { background: rgba(138, 129, 120, .08); border-radius: var(--radius); padding: var(--s3); display: flex; flex-direction: column; gap: var(--s1); margin-top: var(--s3); }
+.callout { background: rgba(107, 107, 112, .08); border-radius: var(--radius); padding: var(--s3); display: flex; flex-direction: column; gap: var(--s1); margin-top: var(--s3); }
 .callout-q { font-family: var(--serif); font-size: var(--t-h3); line-height: 1.35; max-width: 40ch; }
 
 .sol { display: flex; flex-direction: column; gap: var(--s2); margin-top: var(--s5); }
@@ -390,7 +390,7 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 .feature-card {
   display: flex; flex-direction: column; justify-content: space-between; gap: var(--s3);
   padding: var(--s4); border-radius: var(--radius); min-height: 300px;
-  background: rgb(138, 129, 120) url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png') center / cover;
+  background: rgb(107, 107, 112) url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png') center / cover;
 }
 .card-grid .feature-card { justify-content: flex-start; text-align: center; }
 .feature-card img { height: 300px; width: 100%; object-fit: contain; }
@@ -415,7 +415,7 @@ ul.plain { list-style: none; margin: var(--s1) 0 0; padding: 0; display: flex; f
 .shot-row {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s3);
   padding: var(--s4); border-radius: var(--radius); margin-top: var(--s1);
-  background: rgb(138, 129, 120) url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png') center / cover;
+  background: rgb(107, 107, 112) url('https://framerusercontent.com/images/CcIl0Ioy8wmfE36Sn08RTvx1o.png') center / cover;
 }
 .shot-row img { width: 100%; height: auto; }
 .shot-caption { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; margin-top: var(--s2); }
@@ -656,7 +656,7 @@ main.case .research-block.tldr > h3 { color: var(--red); margin: 0; font-size: 2
 /* SupplySync: Findings card */
 .findings {
   margin-top: var(--s5); padding: var(--s4); border-radius: var(--radius);
-  background: rgba(138, 129, 120, 0.12);
+  background: rgba(107, 107, 112, 0.12);
   display: flex; flex-direction: column; gap: 12px;
 }
 main.case .findings .eyebrow { border: 0; padding: 0; margin: 0 0 4px; }
@@ -670,7 +670,7 @@ main.case .findings .eyebrow { border: 0; padding: 0; margin: 0 0 4px; }
 .pain-card {
   display: flex; flex-direction: column; gap: 12px; padding: var(--s4) var(--s3);
   border-radius: var(--radius);
-  background: rgba(138, 129, 120, 0.12);
+  background: rgba(107, 107, 112, 0.12);
 }
 .pain-icon { width: 28px; height: 28px; color: var(--primary-brown); margin-bottom: 4px; }
 main.case .pain-card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; line-height: 1.3; color: var(--primary-brown); }
@@ -686,12 +686,12 @@ main.case .assumptions .finding-grid { margin-top: 0; }
 
 /* SupplySync: discovery & research findings (boxed cards) */
 main.case .finding-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
-main.case .finding-card { display: flex; flex-direction: column; gap: 12px; padding: var(--s3); border-radius: var(--radius); background: rgba(138, 129, 120, 0.12); }
+main.case .finding-card { display: flex; flex-direction: column; gap: 12px; padding: var(--s3); border-radius: var(--radius); background: rgba(107, 107, 112, 0.12); }
 main.case .finding-illo { color: var(--primary-brown); display: flex; justify-content: center; margin-bottom: var(--s1); }
 main.case .finding-illo svg { width: 100%; max-width: 240px; height: auto; }
 main.case .finding-card h4 { font-size: 1.25rem; font-weight: 500; line-height: 1.35; }
 main.case .finding-card > p { font-size: 1rem; line-height: 1.55; }
-main.case .evidence-block { flex: 1; padding-top: var(--s2); border-top: 1px solid rgba(138, 129, 120, 0.3); display: flex; flex-direction: column; gap: 10px; }
+main.case .evidence-block { flex: 1; padding-top: var(--s2); border-top: 1px solid rgba(107, 107, 112, 0.3); display: flex; flex-direction: column; gap: 10px; }
 main.case .evidence-label { font-size: 0.8125rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--secondary-brown); }
 main.case .evidence { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
 main.case .evidence li { font-size: 0.9375rem; line-height: 1.5; color: var(--secondary-brown); }
@@ -709,13 +709,13 @@ main.case .evidence-block .source { margin-top: auto; padding-top: 4px; font-siz
 
 /* Stats with an illustration box beside them (nook problem) */
 main.case .stat-illo { display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: var(--s4); align-items: center; }
-main.case .stat-illo .finding-illo { margin: 0; padding: var(--s3); border-radius: var(--radius); background: rgba(138, 129, 120, 0.12); }
+main.case .stat-illo .finding-illo { margin: 0; padding: var(--s3); border-radius: var(--radius); background: rgba(107, 107, 112, 0.12); }
 main.case .stat-text { display: flex; flex-direction: column; gap: var(--s2); }
 @media (max-width: 700px) { main.case .stat-illo { grid-template-columns: 1fr; gap: var(--s2); } }
 
 
 /* Nook survey: brown SupplySync-style illustrations (replace the colour gifs) */
-main.case .survey .survey-illo { margin: auto 0 0; aspect-ratio: 1 / 1; padding: 0; border-radius: var(--radius); background: rgba(138, 129, 120, 0.12); overflow: hidden; }
+main.case .survey .survey-illo { margin: auto 0 0; aspect-ratio: 1 / 1; padding: 0; border-radius: var(--radius); background: rgba(107, 107, 112, 0.12); overflow: hidden; }
 main.case .survey .survey-illo svg { width: 100%; height: 100%; max-width: none; }
 
 /* ===================== Nook case study: app colour scheme =====================
