@@ -764,3 +764,26 @@ body.theme-nook .site-nav a.active { color: var(--red); }
 .to-top:hover { transform: translateY(-2px); }
 .to-top:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 @media (max-width: 700px) { .to-top { right: 16px; bottom: 16px; width: 46px; height: 46px; } }
+
+/* ---------- SupplySync theme: logo palette (blue + ink on cool white) ---------- */
+body.theme-supplysync {
+  --primary-brown: rgb(20, 20, 22);
+  --secondary-brown: rgb(107, 112, 120);
+  --background-cream: rgb(247, 248, 250);
+  --red: rgb(0, 122, 255);
+  --green: rgb(0, 122, 255);
+  --line: rgba(20, 20, 22, 0.1);
+  --tag: rgba(0, 122, 255, 0.08);
+  background: var(--background-cream);
+}
+body.theme-supplysync .xl-header,
+body.theme-supplysync main.case .subheader,
+body.theme-supplysync .callout-q { color: var(--red); }
+body.theme-supplysync .callout { background: rgba(0, 122, 255, 0.07); }
+body.theme-supplysync main.case .finding-card { background: rgb(238, 241, 245); }
+body.theme-supplysync main.case .evidence-block { border-top-color: var(--line); }
+body.theme-supplysync .case-hero--video, body.theme-supplysync .case-hero--video[class] { background: var(--background-cream); }
+body.theme-supplysync .ss-hero { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+body.theme-supplysync .site-nav a.active { color: var(--red); }
+html:has(body.theme-supplysync) { background: rgb(247, 248, 250); }
+@media (max-width: 860px) { body.theme-supplysync .site-nav { background: var(--background-cream); } }

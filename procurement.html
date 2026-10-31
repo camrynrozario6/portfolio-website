@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261031c">
+  <link rel="stylesheet" href="css/style.css?v=20261031d">
   <script>/* page-load animation: hide content until it flows in (skipped if reduced motion) */
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("js-reveal");
@@ -31,12 +31,12 @@
     }
   </script>
 </head>
-<body>
+<body class="theme-supplysync">
   <div class="shell">
     <aside class="site-nav" data-nav="supplysync"></aside>
 
     <main class="case page">
-      <div class="case-hero placeholder thumb">Coming soon</div>
+      <div class="case-hero case-hero--video"><video class="ss-hero" src="assets/supplysync-thumbnail.mp4?v=1" poster="assets/supplysync-thumbnail-poster.jpg?v=1" autoplay muted loop playsinline aria-label="SupplySync logo animation"></video></div>
 
       <!-- ===================== OVERVIEW ===================== -->
       <section id="overview">
@@ -63,52 +63,19 @@
           <h3 class="assumptions-title">Initial Assumptions</h3>
           <div class="finding-grid">
             <div class="finding-card assumption-card">
-              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-              <g transform="rotate(-8 62 52)"><rect x="24" y="22" width="76" height="58" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/><rect x="24" y="22" width="76" height="10" rx="4" fill="currentColor" fill-opacity=".12"/>
-                <rect x="44" y="42" width="36" height="24" rx="2" stroke="currentColor" stroke-width="1.5" stroke-opacity=".45"/><path d="m44 43 18 13 18-13" stroke="currentColor" stroke-width="1.5" stroke-opacity=".45"/></g>
-              <g transform="rotate(7 178 50)"><rect x="140" y="20" width="76" height="60" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/><rect x="140" y="20" width="76" height="10" rx="4" fill="currentColor" fill-opacity=".12"/>
-                <rect x="150" y="40" width="38" height="12" rx="6" fill="currentColor" fill-opacity=".18"/><rect x="168" y="58" width="38" height="12" rx="6" fill="currentColor" fill-opacity=".18"/></g>
-              <rect x="80" y="76" width="80" height="60" rx="4" fill="var(--background-cream)" stroke="currentColor" stroke-width="2"/>
-              <rect x="80" y="76" width="80" height="11" rx="4" fill="currentColor"/>
-              <path d="M112 100c0-6 4-9 8-9s8 3 8 8c0 6-8 6-8 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="120" cy="121" r="1.8" fill="currentColor"/>
-              <path d="M88 70l10 8M156 74l-8 6" stroke="currentColor" stroke-width="2" stroke-dasharray="3 4" stroke-opacity=".6"/>
-            </svg></div>
+              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><defs><filter id="ss-sh1" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#0B1B33" flood-opacity=".13"/></filter></defs><g transform="rotate(-8 62 54)"><rect x="22" y="22" width="80" height="62" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh1)" /><rect x="44" y="40" width="36" height="25" rx="3" stroke="#8A919B" stroke-width="1.6"/><path d="m45 42 17 12 17-12" stroke="#8A919B" stroke-width="1.6" stroke-linejoin="round"/></g><g transform="rotate(7 178 52)"><rect x="138" y="20" width="80" height="64" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh1)" /><rect x="148" y="34" width="40" height="13" rx="6.5" fill="#DDE2E8"/><rect x="166" y="53" width="42" height="13" rx="6.5" fill="#C5CBD3"/></g><rect x="74" y="62" width="92" height="72" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh1)" /><rect x="86" y="76" width="52" height="6" rx="3.0" fill="#C5CBD3"/><rect x="86" y="88" width="64" height="5" rx="2.5" fill="#DDE2E8"/><rect x="86" y="98" width="44" height="5" rx="2.5" fill="#DDE2E8"/><rect x="86" y="114" width="40" height="10" rx="5.0" fill="#007AFF"/><circle cx="160" cy="66" r="13" fill="#007AFF" filter="url(#ss-sh1)"/><path d="M155.5 62.5c0-3 2.2-4.8 4.6-4.8s4.6 1.7 4.6 4.4c0 3.7-4.6 3.6-4.6 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="160.1" cy="73.6" r="1.5" fill="#fff"/></svg></div>
               <p class="evidence-label">Assumption 01</p>
               <h4>Fragmented communication</h4>
               <p>Communication across emails, calls, and different platforms makes it difficult for purchasers and suppliers to track conversations and find the latest updates.</p>
             </div>
             <div class="finding-card assumption-card">
-              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-              <rect x="44" y="16" width="132" height="118" rx="4" fill="var(--background-cream)" stroke="currentColor" stroke-width="2"/>
-              <rect x="44" y="16" width="132" height="12" rx="4" fill="currentColor"/>
-              <g stroke="currentColor" stroke-width="1.5" stroke-opacity=".25"><path d="M54 52h112M54 74h112M54 96h112"/></g>
-              <circle cx="62" cy="41" r="4" fill="currentColor" fill-opacity=".35"/><rect x="72" y="38" width="50" height="6" rx="3" fill="currentColor" fill-opacity=".18"/>
-              <circle cx="62" cy="63" r="4" fill="currentColor" fill-opacity=".35"/><rect x="72" y="60" width="40" height="6" rx="3" fill="currentColor" fill-opacity=".18"/>
-              <circle cx="62" cy="85" r="4" fill="currentColor" fill-opacity=".35"/><rect x="72" y="82" width="56" height="6" rx="3" fill="currentColor" fill-opacity=".18"/>
-              <circle cx="62" cy="107" r="4" fill="currentColor" fill-opacity=".35"/><rect x="72" y="104" width="34" height="6" rx="3" fill="currentColor" fill-opacity=".18"/>
-              <circle cx="168" cy="106" r="20" fill="var(--background-cream)" stroke="currentColor" stroke-width="2"/>
-              <path d="M182 120l14 14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-              <path d="M162 101c0-4 3-6 6-6s6 2 6 6c0 4-6 4-6 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="168" cy="114" r="1.6" fill="currentColor"/>
-            </svg></div>
+              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><defs><filter id="ss-sh2" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#0B1B33" flood-opacity=".13"/></filter></defs><rect x="46" y="16" width="128" height="118" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh2)" /><rect x="58" y="27" width="54" height="7" rx="3.5" fill="#C5CBD3"/><path d="M58 56h104M58 76h104M58 96h104" stroke="#E3E7EC" stroke-width="1.5"/><circle cx="64" cy="46" r="4.5" fill="#C5CBD3"/><rect x="76" y="43" width="58" height="6" rx="3.0" fill="#DDE2E8"/><circle cx="64" cy="66" r="4.5" fill="#007AFF"/><rect x="76" y="63" width="44" height="6" rx="3.0" fill="#DDE2E8"/><circle cx="64" cy="86" r="4.5" fill="#C5CBD3"/><rect x="76" y="83" width="64" height="6" rx="3.0" fill="#DDE2E8"/><circle cx="64" cy="106" r="4.5" fill="#C5CBD3"/><rect x="76" y="103" width="38" height="6" rx="3.0" fill="#DDE2E8"/><rect x="140" y="20" width="62" height="22" rx="11" fill="#007AFF" filter="url(#ss-sh2)"/><text x="171" y="35.5" text-anchor="middle" font-family="Geist, sans-serif" font-size="12" font-weight="600" fill="#fff">3 late</text><circle cx="170" cy="104" r="20" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh2)"/><circle cx="170" cy="104" r="12" stroke="#007AFF" stroke-width="2.6"/><path d="M178.5 112.5l9 9" stroke="#007AFF" stroke-width="3.4" stroke-linecap="round"/></svg></div>
               <p class="evidence-label">Assumption 02</p>
               <h4>Limited order visibility</h4>
               <p>Existing procurement software may not clearly highlight unanswered requests, delayed orders, or changing delivery timelines, leaving purchasers to manually chase updates.</p>
             </div>
             <div class="finding-card assumption-card">
-              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-              <rect x="18" y="34" width="60" height="70" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/><rect x="18" y="34" width="60" height="10" rx="4" fill="currentColor" fill-opacity=".12"/>
-              <rect x="28" y="54" width="34" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/><rect x="28" y="65" width="24" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/><rect x="28" y="84" width="22" height="9" rx="2" fill="currentColor" fill-opacity=".18"/>
-              <rect x="162" y="34" width="60" height="70" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/><rect x="162" y="34" width="60" height="10" rx="4" fill="currentColor" fill-opacity=".12"/>
-              <rect x="172" y="54" width="34" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/><rect x="172" y="65" width="24" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/><rect x="172" y="84" width="22" height="9" rx="2" fill="currentColor" fill-opacity=".18"/>
-              <path d="M78 69h10M152 69h10" stroke="currentColor" stroke-width="2" stroke-dasharray="3 4" stroke-opacity=".6"/>
-              <rect x="88" y="26" width="64" height="98" rx="4" fill="var(--background-cream)" stroke="currentColor" stroke-width="2"/>
-              <rect x="88" y="26" width="64" height="11" rx="4" fill="currentColor"/>
-              <circle cx="120" cy="70" r="16" stroke="currentColor" stroke-width="2"/>
-              <path d="M120 61v9l6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="110" cy="104" r="3" fill="currentColor"/><circle cx="120" cy="104" r="3" fill="currentColor" fill-opacity=".55"/><circle cx="130" cy="104" r="3" fill="currentColor" fill-opacity=".25"/>
-            </svg></div>
+              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><defs><filter id="ss-sh3" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#0B1B33" flood-opacity=".13"/></filter></defs><rect x="18" y="38" width="58" height="68" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh3)" /><rect x="28" y="50" width="30" height="6" rx="3.0" fill="#C5CBD3"/><rect x="28" y="62" width="22" height="5" rx="2.5" fill="#DDE2E8"/><rect x="28" y="84" width="24" height="10" rx="5" fill="#DDE2E8"/><rect x="164" y="38" width="58" height="68" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh3)" /><rect x="174" y="50" width="30" height="6" rx="3.0" fill="#C5CBD3"/><rect x="174" y="62" width="22" height="5" rx="2.5" fill="#DDE2E8"/><rect x="174" y="84" width="24" height="10" rx="5" fill="#DDE2E8"/><path d="M76 72h12M152 72h12" stroke="#C5CBD3" stroke-width="2" stroke-dasharray="3 4" stroke-linecap="round"/><rect x="86" y="22" width="68" height="106" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh3)" /><circle cx="120" cy="66" r="19" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5"/><path d="M120 55v11l7 5" stroke="#007AFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="109" cy="106" r="3.5" fill="#007AFF"/><circle cx="120" cy="106" r="3.5" fill="#007AFF" fill-opacity=".5"/><circle cx="131" cy="106" r="3.5" fill="#007AFF" fill-opacity=".2"/></svg></div>
               <p class="evidence-label">Assumption 03</p>
               <h4>Delayed supplier decisions</h4>
               <p>Suppliers and stakeholders may take time to evaluate competing offers, negotiate terms, or assess contract profitability before committing to an order, leaving purchasers uncertain about the outcome and expected timeline.</p>
@@ -134,16 +101,7 @@
         <div class="research-block">
           <div class="finding-grid">
             <div class="finding-card">
-              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-              <rect x="40" y="18" width="110" height="80" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/>
-              <rect x="40" y="18" width="110" height="12" rx="4" fill="currentColor" fill-opacity=".12"/>
-              <rect x="80" y="44" width="122" height="88" rx="4" fill="var(--background-cream)" stroke="currentColor" stroke-width="2"/>
-              <rect x="80" y="44" width="122" height="12" rx="4" fill="currentColor"/>
-              <circle cx="96" cy="76" r="4" fill="currentColor"/><circle cx="110" cy="76" r="4" fill="currentColor"/>
-              <g stroke="currentColor" stroke-width="1.5" stroke-opacity=".5"><circle cx="124" cy="76" r="4"/><circle cx="138" cy="76" r="4"/><circle cx="152" cy="76" r="4"/><circle cx="166" cy="76" r="4"/><circle cx="180" cy="76" r="4"/></g>
-              <rect x="92" y="94" width="76" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-              <rect x="92" y="106" width="52" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-            </svg></div>
+              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><defs><filter id="ss-sh4" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#0B1B33" flood-opacity=".13"/></filter></defs><rect x="34" y="26" width="106" height="76" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh4)" /><rect x="46" y="84" width="40" height="5" rx="2.5" fill="#DDE2E8"/><rect x="46" y="93" width="28" height="5" rx="2.5" fill="#DDE2E8"/><rect x="80" y="40" width="128" height="90" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh4)" /><rect x="94" y="54" width="62" height="7" rx="3.5" fill="#C5CBD3"/><rect x="94" y="64" width="36" height="5" rx="2.5" fill="#DDE2E8"/><rect x="94.0" y="72" width="12" height="12" rx="3" fill="#007AFF" stroke="#007AFF" stroke-width="1.2"/><rect x="109.5" y="72" width="12" height="12" rx="3" fill="#007AFF" stroke="#007AFF" stroke-width="1.2"/><rect x="125.0" y="72" width="12" height="12" rx="3" fill="#fff" stroke="#E3E7EC" stroke-width="1.2"/><rect x="140.5" y="72" width="12" height="12" rx="3" fill="#fff" stroke="#E3E7EC" stroke-width="1.2"/><rect x="156.0" y="72" width="12" height="12" rx="3" fill="#fff" stroke="#E3E7EC" stroke-width="1.2"/><rect x="171.5" y="72" width="12" height="12" rx="3" fill="#fff" stroke="#E3E7EC" stroke-width="1.2"/><rect x="187.0" y="72" width="12" height="12" rx="3" fill="#fff" stroke="#E3E7EC" stroke-width="1.2"/><rect x="94" y="94" width="70" height="4.5" rx="2.25" fill="#DDE2E8"/><rect x="94" y="102" width="54" height="4.5" rx="2.25" fill="#DDE2E8"/><rect x="94" y="113" width="30" height="9" rx="4.5" fill="#007AFF"/></svg></div>
               <h4>Complex workflows and poor usability</h4>
               <p>Users report steep learning curves, confusing navigation, and too many steps to complete routine tasks.</p>
               <div class="evidence-block">
@@ -156,20 +114,7 @@
               </div>
             </div>
             <div class="finding-card">
-              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-              <rect x="26" y="42" width="68" height="70" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/>
-              <rect x="26" y="42" width="68" height="11" rx="4" fill="currentColor" fill-opacity=".12"/>
-              <rect x="36" y="64" width="38" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-              <rect x="36" y="75" width="28" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-              <path d="M94 77h22M136 77h20" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
-              <circle cx="126" cy="77" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="m122 73 8 8m0-8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <rect x="156" y="32" width="64" height="82" rx="4" stroke="currentColor" stroke-width="2"/>
-              <rect x="156" y="32" width="64" height="11" rx="4" fill="currentColor"/>
-              <rect x="166" y="54" width="44" height="9" rx="2" stroke="currentColor" stroke-width="1.5" stroke-opacity=".6"/>
-              <rect x="166" y="70" width="44" height="9" rx="2" stroke="currentColor" stroke-width="1.5" stroke-opacity=".6"/>
-              <rect x="166" y="88" width="44" height="10" rx="2" fill="currentColor" fill-opacity=".18"/>
-            </svg></div>
+              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><defs><filter id="ss-sh5" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#0B1B33" flood-opacity=".13"/></filter></defs><rect x="20" y="40" width="70" height="72" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh5)" /><circle cx="38" cy="60" r="7" fill="#C5CBD3"/><rect x="50" y="57" width="28" height="6" rx="3.0" fill="#C5CBD3"/><rect x="30" y="76" width="46" height="5" rx="2.5" fill="#DDE2E8"/><rect x="30" y="86" width="34" height="5" rx="2.5" fill="#DDE2E8"/><path d="M92 76h18M130 76h18" stroke="#C5CBD3" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/><circle cx="120" cy="76" r="12" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh5)"/><path d="m115.5 71.5 9 9m0-9-9 9" stroke="#007AFF" stroke-width="2.4" stroke-linecap="round"/><rect x="150" y="26" width="72" height="98" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh5)" /><rect x="160" y="36" width="36" height="6" rx="3.0" fill="#C5CBD3"/><rect x="160" y="52" width="52" height="12" rx="4" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.2"/><rect x="160" y="70" width="52" height="12" rx="4" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.2"/><rect x="160" y="92" width="52" height="13" rx="6.5" fill="#007AFF"/></svg></div>
               <h4>Supplier onboarding and collaboration friction</h4>
               <p>Users describe frustrating portal access and account setup, and difficulty connecting supplier information across customers and systems.</p>
               <div class="evidence-block">
@@ -181,19 +126,7 @@
               </div>
             </div>
             <div class="finding-card">
-              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true">
-              <rect x="34" y="16" width="62" height="44" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/>
-              <rect x="34" y="16" width="62" height="10" rx="4" fill="currentColor" fill-opacity=".12"/>
-              <rect x="44" y="36" width="34" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-              <rect x="144" y="16" width="62" height="44" rx="4" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="2" stroke-opacity=".25"/>
-              <rect x="144" y="16" width="62" height="10" rx="4" fill="currentColor" fill-opacity=".12"/>
-              <rect x="154" y="36" width="34" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-              <path d="M96 38h48M65 60v34h24M175 60v34h-24" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5" stroke-opacity=".6"/>
-              <rect x="89" y="80" width="62" height="54" rx="4" stroke="currentColor" stroke-width="2"/>
-              <rect x="89" y="80" width="62" height="10" rx="4" fill="currentColor"/>
-              <rect x="99" y="100" width="40" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-              <rect x="99" y="111" width="28" height="5" rx="2.5" fill="currentColor" fill-opacity=".18"/>
-            </svg></div>
+              <div class="finding-illo"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><defs><filter id="ss-sh6" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#0B1B33" flood-opacity=".13"/></filter></defs><rect x="32" y="16" width="64" height="46" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh6)" /><rect x="42" y="27" width="30" height="6" rx="3.0" fill="#C5CBD3"/><rect x="42" y="39" width="40" height="5" rx="2.5" fill="#DDE2E8"/><rect x="42" y="48" width="26" height="5" rx="2.5" fill="#DDE2E8"/><rect x="144" y="16" width="64" height="46" rx="8" fill="#F3F5F8" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh6)" /><rect x="154" y="27" width="30" height="6" rx="3.0" fill="#C5CBD3"/><rect x="154" y="39" width="40" height="5" rx="2.5" fill="#DDE2E8"/><rect x="154" y="48" width="26" height="5" rx="2.5" fill="#DDE2E8"/><path d="M96 39h16M128 39h16M64 62v34h24M176 62v34h-24" stroke="#C5CBD3" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/><circle cx="120" cy="39" r="10" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh6)"/><path d="M114.5 41.5l3-3M122.5 36.5l3-3M118 34l-1.5-3M122 44l1.5 3" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/><rect x="88" y="78" width="64" height="58" rx="8" fill="#fff" stroke="#E3E7EC" stroke-width="1.5" filter="url(#ss-sh6)" /><rect x="98" y="90" width="32" height="6" rx="3.0" fill="#C5CBD3"/><rect x="98" y="102" width="44" height="5" rx="2.5" fill="#DDE2E8"/><rect x="98" y="111" width="30" height="5" rx="2.5" fill="#DDE2E8"/><rect x="98" y="121" width="26" height="8" rx="4.0" fill="#007AFF"/></svg></div>
               <h4>Disconnected information and workflow visibility</h4>
               <p>Users report integration difficulties, repeated data entry, and cumbersome updates to purchasing transactions.</p>
               <div class="evidence-block">
