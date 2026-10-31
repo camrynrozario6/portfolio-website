@@ -769,7 +769,7 @@ body.theme-nook .site-nav a.active { color: var(--red); }
 body.theme-supplysync {
   --primary-brown: rgb(20, 20, 22);
   --secondary-brown: rgb(107, 112, 120);
-  --background-cream: rgb(247, 248, 250);
+  --background-cream: rgb(249, 247, 244);
   --red: rgb(0, 122, 255);
   --green: rgb(0, 122, 255);
   --line: rgba(20, 20, 22, 0.1);
@@ -785,7 +785,7 @@ body.theme-supplysync main.case .evidence-block { border-top-color: var(--line);
 body.theme-supplysync .case-hero--video, body.theme-supplysync .case-hero--video[class] { background: var(--background-cream); }
 body.theme-supplysync .ss-hero { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 body.theme-supplysync .site-nav a.active { color: var(--red); }
-html:has(body.theme-supplysync) { background: rgb(247, 248, 250); }
+html:has(body.theme-supplysync) { background: rgb(249, 247, 244); }
 @media (max-width: 860px) { body.theme-supplysync .site-nav { background: var(--background-cream); } }
 body.theme-supplysync main.case .stat-illo .finding-illo { background: rgb(238, 241, 245); }
 body.theme-supplysync .ss-hero { aspect-ratio: 16 / 9; }
