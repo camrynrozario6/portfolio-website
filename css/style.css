@@ -787,3 +787,5 @@ body.theme-supplysync .ss-hero { display: block; width: 100%; aspect-ratio: 16 /
 body.theme-supplysync .site-nav a.active { color: var(--red); }
 html:has(body.theme-supplysync) { background: rgb(247, 248, 250); }
 @media (max-width: 860px) { body.theme-supplysync .site-nav { background: var(--background-cream); } }
+body.theme-supplysync main.case .stat-illo .finding-illo { background: rgb(238, 241, 245); }
+body.theme-supplysync .ss-hero { aspect-ratio: 16 / 9; }
