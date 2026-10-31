@@ -778,7 +778,7 @@ body.theme-supplysync {
 }
 body.theme-supplysync .xl-header,
 body.theme-supplysync main.case .subheader,
-body.theme-supplysync .callout-q { color: var(--red); }
+body.theme-supplysync .callout-q { color: var(--primary-brown); }
 body.theme-supplysync .callout { background: rgba(0, 122, 255, 0.07); }
 body.theme-supplysync main.case .finding-card { background: rgb(238, 241, 245); }
 body.theme-supplysync main.case .evidence-block { border-top-color: var(--line); }
