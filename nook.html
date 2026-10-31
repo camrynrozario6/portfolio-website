@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261031b">
+  <link rel="stylesheet" href="css/style.css?v=20261031c">
   <script>/* page-load animation: hide content until it flows in (skipped if reduced motion) */
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("js-reveal");
@@ -405,6 +405,18 @@
     sync();
     }
   })();
+  </script>
+  <button class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>
+    (function () {
+      var b = document.querySelector('.to-top');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function update() { b.classList.toggle('show', window.scrollY > window.innerHeight * 0.8); }
+      window.addEventListener('scroll', update, { passive: true }); update();
+      b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+    })();
   </script>
 </body>
 </html>
