@@ -755,3 +755,4 @@ body.theme-nook .site-nav a.active { color: var(--red); }
 @media (max-width: 860px) {
   body.theme-nook .site-nav { background: var(--background-cream); }
 }
+body.theme-nook main.case .stat-illo .finding-illo { background: rgb(247, 247, 248); }
