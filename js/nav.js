@@ -9,7 +9,7 @@
   // ---- Edit these ----
   var EMAIL = "camrynrozario06@gmail.com";
   var LINKEDIN = "";   // paste your LinkedIn URL here
-  var RESUME = "";     // paste a link to your resume PDF here (e.g. "assets/resume.pdf")
+  var RESUME = "assets/Camryn_Rozario_Resume.pdf";
 
   var main = [
     { label: "Product Design", links: [
@@ -55,7 +55,7 @@
     if (!l.href) return '<span' + (l.plain ? "" : ' class="muted"') + ">" + l.text + "</span>";
     var target = l.href.replace(/\.html$/, "");
     var active = target === page || (page === "home" && target === "home") ? ' class="active" aria-current="page"' : "";
-    var ext = /^https?:/.test(l.href) ? ' target="_blank" rel="noopener"' : "";
+    var ext = /^https?:|\.pdf$/.test(l.href) ? ' target="_blank" rel="noopener"' : "";
     return '<a href="' + l.href + '"' + active + ext + ">" + l.text + "</a>";
   }
 
