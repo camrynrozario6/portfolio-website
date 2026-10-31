@@ -8,7 +8,7 @@
 
   // ---- Edit these ----
   var EMAIL = "camrynrozario06@gmail.com";
-  var LINKEDIN = "";   // paste your LinkedIn URL here
+  var LINKEDIN = "https://www.linkedin.com/in/camryn-rozario/";
   var RESUME = "assets/Camryn_Rozario_Resume.pdf";
 
   var main = [
