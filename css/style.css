@@ -791,7 +791,7 @@ body.theme-supplysync main.case .stat-illo .finding-illo { background: rgb(238, 
 body.theme-supplysync .ss-hero { aspect-ratio: 16 / 9; }
 
 /* SupplySync: stakeholder interview, two procurement flows */
-main.case .flow-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); margin-top: var(--s4); align-items: start; }
+main.case .flow-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); margin-top: var(--s1); align-items: start; }
 main.case .flow-track { display: flex; flex-direction: column; gap: 6px; padding: var(--s4) var(--s3); border-radius: var(--radius); background: rgb(238, 241, 245); }
 main.case .flow-illo { display: flex; justify-content: center; margin-bottom: var(--s2); }
 main.case .flow-illo svg { width: 100%; max-width: 320px; height: auto; }

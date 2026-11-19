@@ -44,8 +44,7 @@
       { text: "Overview", href: "#overview" },
       { text: "The Starting Point", href: "#starting-point" },
       { text: "Primary Research Question", href: "#research-question" },
-      { text: "Discovery & Research", href: "#research" },
-      { text: "Stakeholder Interview", href: "#interview" }
+      { text: "Discovery & Research", href: "#research" }
     ]}
   ];
 
